@@ -1,7 +1,9 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix mus: <https://eu.cohort1.kgg.org/music/musicians#> .
+
 
 mus:musicOntology rdf:type owl:Ontology ;
    rdfs:label "The Musicians Ontology"@en ;
@@ -10,6 +12,8 @@ mus:artist rdfs:isDefinedBy mus:musicOntology ;
     rdf:type owl:Class ;
     rdfs:label ""@en ;
         rdfs:comment ""@en .
-    mus:age owl:datatypeProperty ;
-        rdfs:label ""@en ;
-            rdfs:comment ""@en .
+mus:age rdf:type owl:DatatypeProperty ;
+    rdfs:domain mus:Artist ;
+    rdfs:range xsd:integer .
+    rdfs:label "Age"@en ;
+    rdfs:comment "The age of the artist"@en .
