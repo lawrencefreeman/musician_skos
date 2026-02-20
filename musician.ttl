@@ -1,0 +1,15 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix mus: <https://eu.cohort1.kgg.org/music/musicians#> .
+
+mus:musicOntology rdf:type owl:Ontology ;
+   rdfs:label "The Musicians Ontology"@en ;
+      rdfs:comment "This ontology defines the artists an ontology for modelling musicians, their roles instruments genres and musical works."@en .
+mus:artist rdfs:isDefinedBy mus:musicOntology ;
+    rdf:type owl:Class ;
+    rdfs:label ""@en ;
+        rdfs:comment ""@en .
+    mus:age owl:datatypeProperty ;
+        rdfs:label ""@en ;
+            rdfs:comment ""@en .

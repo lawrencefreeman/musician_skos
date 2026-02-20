@@ -1,0 +1,132 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix geo: <https://eu.cohort1.kgg.org/music/musicians#> .
+
+geo:geoLocations rdf:type skos:ConceptScheme ;
+    skos:prefLabel "Geographic Location"@en ;
+    skos:altLabel "geo location" ;
+    skos:definition "In geography, location or place is used to denote a region (point, line, or area) on Earth's surface. The term location generally implies a higher degree of certainty than place, the latter often indicating an entity with an ambiguous boundary, relying more on human or social attributes of place identity and sense of place than on geometry." ;
+    skos:exactMatch "<https://en.wikipedia.org/wiki/Location>" ;
+    skos:scopeNote "Fetched form wikidata" .
+
+geo:europe rdf:type skos:Concept ;
+    skos:inScheme geo:geoLocations ;
+    skos:prefLabel "Europe"@en ;
+    skos:definition "Europe is a continent[t] located entirely in the Northern Hemisphere and mostly in the Eastern Hemisphere." ;
+    skos:exactMatch "<https://en.wikipedia.org/wiki/Europe>" ;
+    skos:scopeNote "Fetched form wikidata" ;
+
+geo:north_america rdf:type skos:Concept ;
+    skos:inScheme geo:geoLocations ;
+    skos:prefLabel "North America"@en ;
+    skos:definition "North America is a continent[b] in the Northern and Western hemispheres.[c] North America is bordered to the north by the Arctic Ocean, to the east by the Atlantic Ocean, to the southeast by South America and the Caribbean Sea, and to the south and west by the Pacific Ocean. The region includes Middle America comprising the Caribbean, Central America, and Northern America." ;
+    skos:exactMatch "<https://en.wikipedia.org/wiki/North_America>" ;
+    skos:scopeNote "Fetched form wikidata" ;
+
+geo:united_kingdom rdf:type skos:Concept ;
+    skos:inScheme geo:geoLocations ;
+    skos:prefLabel "United Kingdom"@en ;
+    skos:definition "The United Kingdom of Great Britain and Northern Ireland, commonly known as the United Kingdom (UK) or Britain,[m] is a country in northwestern Europe, off the coast of the continental mainland. It comprises England, Scotland, Wales and Northern Ireland,[n] with a population of over 69 million in 2024. The UK includes the island of Great Britain, the north-eastern part of the island of Ireland, and most of the smaller islands within the British Isles, covering 94,354 square miles (244,376 km2)." ;
+    skos:exactMatch "<https://en.wikipedia.org/wiki/United_Kingdom>" ;
+    skos:scopeNote "Fetched form wikidata" ;
+    skos:broader geo:europe .
+
+geo:finland rdf:type skos:Concept ;
+    skos:inScheme geo:geoLocations ;
+    skos:prefLabel "Finland"@en ;
+    skos:definition "Finland,[a] officially the Republic of Finland,[b][c] is a Nordic country in Northern Europe. It borders Sweden to the northwest, Norway to the north, and Russia to the east, with the Gulf of Bothnia to the west and the Gulf of Finland to the south, opposite Estonia. Its capital and largest city is Helsinki. Finland has a population of 5.6 million.[9] The official languages are Finnish and Swedish, the mother tongues of 84.1 percent and 5.1 percent of the population, respectively." ;
+    skos:exactMatch "<https://en.wikipedia.org/wiki/Finland>" ;
+    skos:scopeNote "Fetched form wikidata" ;
+    skos:broader geo:europe .
+
+geo:france rdf:type skos:Concept ;
+    skos:inScheme geo:geoLocations ;
+    skos:prefLabel "France"@en ;
+    skos:definition "France,[h] officially the French Republic,[i] is a country primarily located in Western Europe.[j] Its overseas regions and territories include French Guiana in South America, Saint Pierre and Miquelon in the North Atlantic, the French West Indies, and many islands in Oceania and the Indian Ocean." ;
+    skos:exactMatch "<https://en.wikipedia.org/wiki/France>" ;
+    skos:scopeNote "Fetched form wikidata" ;
+    skos:broader geo:europe .
+
+geo:united_states rdf:type skos:Concept ;
+    skos:inScheme geo:geoLocations ;
+    skos:prefLabel "United Stated of America"@en ;
+    skos:altLabel "United States, U.S., USA"@en ;
+    skos:definition "The United States of America (USA), also known as the United States (U.S.) or America, is a country primarily located in North America. It is a federal republic of 50 states and a federal capital district, Washington, D.C. The 48 contiguous states border Canada t" ;
+    skos:exactMatch "<https://en.wikipedia.org/wiki/United_States>" ;
+    skos:scopeNote "Fetched form wikidata" ;
+    skos:broader geo:north_america .
+
+geo:london rdf:type skos:Concept ;
+    skos:inScheme geo:geoLocations ;
+    skos:prefLabel "London"@en ;
+    skos:definition "London[c] is the capital and largest city[d] of both England and the United Kingdom, with a population of 9.1 million people in 2024.[2] Its wider metropolitan area is the largest in Western Europe, with a population of 15.1 million.[4] London stands on the River Thames in southeast England, at the head of a 50-mile (80 km) tidal estuary down to the North Sea, and has been a major settlement for nearly 2,000 years." ;
+    skos:exactMatch "<https://en.wikipedia.org/wiki/London>" ;
+    skos:scopeNote "Fetched form wikidata" ;
+    skos:broader geo:united_kingdom .
+
+geo:birmingham rdf:type skos:Concept ;
+    skos:inScheme geo:geoLocations ;
+    skos:prefLabel "Birmingham"@en ;
+    skos:definition "Birmingham (/ˈbɜːrmɪŋəm/ ⓘ[4][5][6] BUR-ming-əm) is a city and metropolitan borough in the metropolitan county of West Midlands, within the wider West Midlands region, in England. It is the largest local authority district in England by population[2] and the second-largest city in Britain[a][7] – commonly referred to as the second city of the United Kingdom[8][9][10][11][12] – with a population of 1.2 million people in the city proper in 2024." ;
+    skos:exactMatch "<https://en.wikipedia.org/wiki/Birmingham>" ;
+    skos:scopeNote "Fetched form wikidata" ;
+    skos:broader geo:united_kingdom .
+
+geo:exeter rdf:type skos:Concept ;
+    skos:inScheme geo:geoLocations ;
+    skos:prefLabel "Exeter"@en ;
+    skos:definition "Exeter (/ˈɛksɪtər/ ⓘ EK-sit-ər) is a cathedral city and the county town of Devon in South West England. It is situated on the River Exe, approximately 36 mi (58 km) northeast of Plymouth and 65 mi (105 km) southwest of Bristol." ;
+    skos:exactMatch "<https://en.wikipedia.org/wiki/Exeter>" ;
+    skos:scopeNote "Fetched form wikidata" ;
+    skos:broader geo:united_kingdom .
+
+geo:helsinki rdf:type skos:Concept ;
+    skos:inScheme geo:geoLocations ;
+    skos:prefLabel "Helsinki"@en ;
+    skos:definition "Helsinki[a] (Swedish: Helsingfors)[b] is the capital and most populous city in Finland. It is on the shore of the Gulf of Finland and is the seat of southern Finland's Uusimaa region. About 690,000 people live in the municipality, with 1.3 million in the capital region and 1.6 million in the metropolitan area." ;
+    skos:exactMatch "<https://en.wikipedia.org/wiki/Helsinki>" ;
+    skos:scopeNote "Fetched form wikidata" ;
+    skos:broader geo:finland .
+
+geo:paris rdf:type skos:Concept ;
+    skos:inScheme geo:geoLocations ;
+    skos:prefLabel "Paris"@en ;
+    skos:definition "Paris[a] is the capital and largest city of France, with an estimated city population of 2,047,602 in an area of 105.4 km2 (40.7 sq mi), and a metropolitan population of 13,239,090 as of January 2026.[3] Located on the river Seine in the centre of the Île-de-France region, it is the largest metropolitan area and fourth-most populous city in the European Union (EU). Nicknamed the City of Light, partly because of its role in the Age of Enlightenment, Paris has been one of the world's major centres of finance, diplomacy, commerce, culture, fashion, and gastronomy since the 17th century." ;
+    skos:exactMatch "<https://en.wikipedia.org/wiki/Paris>" ;
+    skos:scopeNote "Fetched form wikidata" ;
+    skos:broader geo:france .
+
+geo:lyon rdf:type skos:Concept ;
+    skos:inScheme geo:geoLocations ;
+    skos:prefLabel "Lyon"@en ;
+    skos:altLabel "Lyons"@en ;
+    skos:definition "Lyon[c] (Franco-Provençal: Liyon; sometimes Lyons in English) is a city in France. It is located at the confluence of the rivers Rhône and Saône, to the northwest of the French Alps, 391 km (243 mi) southeast of Paris, 278 km (173 mi) north of Marseille, and 113 km (70 mi) southwest of Geneva, Switzerland." ;
+    skos:exactMatch "<https://en.wikipedia.org/wiki/Lyon>" ;
+    skos:scopeNote "Fetched form wikidata" ;
+    skos:broader geo:france .
+
+geo:nyc rdf:type skos:Concept ;
+    skos:inScheme geo:geoLocations ;
+    skos:prefLabel "New York City"@en ;
+    skos:altLabel "NYC"@en ;
+    skos:definition "New York, often called New York City (NYC),[b] is the most populous city in the United States. It is located at the southern tip of New York State on New York Harbor, one of the world's largest natural harbors. The city comprises five boroughs, each coextensive with its respective county. It is the geographical and demographic center of both the Northeast megalopolis and the New York metropolitan area, the largest metropolitan area in the United States by both population and urban area." ;
+    skos:exactMatch "<https://en.wikipedia.org/wiki/New_York_City>" ;
+    skos:scopeNote "Fetched form wikidata" ;
+    skos:broader geo:united_states .
+
+geo:seatlle rdf:type skos:Concept ;
+    skos:inScheme geo:geoLocations ;
+    skos:prefLabel "Seattle"@en ;
+    skos:definition "Seattle (/siˈætəl/ ⓘ see-AT-əl) is the most populous city in the U.S. state of Washington and the Pacific Northwest region of North America." ;
+    skos:exactMatch "<https://en.wikipedia.org/wiki/Seattle>" ;
+    skos:scopeNote "Fetched form wikidata" ;
+    skos:broader geo:united_states .
+
+geo:san_francisco rdf:type skos:Concept ;
+    skos:inScheme geo:geoLocations ;
+    skos:prefLabel "San Francisco"@en ;
+    skos:altLabel "City and County of San Francisco"@en ;
+    skos:definition "San Francisco,[a] officially the City and County of San Francisco, is the fourth-most populous city in California and the 17th-most populous in the United States, with a population of 827,526 in 2024." ;
+    skos:exactMatch "<https://en.wikipedia.org/wiki/San_Francisco>" ;
+    skos:scopeNote "Fetched form wikidata" ;
+    skos:broader geo:united_states .
