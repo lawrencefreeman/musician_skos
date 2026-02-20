@@ -17,3 +17,22 @@ mus:age rdf:type owl:DatatypeProperty ;
     rdfs:range xsd:integer .
     rdfs:label "Age"@en ;
     rdfs:comment "The age of the artist"@en .
+
+
+
+###################################
+# AYALETS WORK #
+###################################
+
+
+
+###################################
+# JEFFS WORK #
+###################################
+
+
+
+
+###################################
+# LOZS WORK #
+###################################
