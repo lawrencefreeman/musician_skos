@@ -10,29 +10,90 @@ mus:musicOntology rdf:type owl:Ontology ;
       rdfs:comment "This ontology defines the artists an ontology for modelling musicians, their roles instruments genres and musical works."@en .
 mus:artist rdfs:isDefinedBy mus:musicOntology ;
     rdf:type owl:Class ;
-    rdfs:label ""@en ;
-        rdfs:comment ""@en .
+    rdfs:label "A artist of music"@en ;
+        rdfs:comment "A musician is someone who composes, conducts, or performs music."@en .
 mus:age rdf:type owl:DatatypeProperty ;
-    rdfs:domain mus:Artist ;
-    rdfs:range xsd:integer .
+    rdfs:domain mus:artist ;
     rdfs:label "Age"@en ;
     rdfs:comment "The age of the artist"@en .
 
+mus:place rdfs:isDefinedBy mus:musicOntology ;
+    rdf:type owl:Class ;
+    rdfs:label "Geographic place"@en ;
+        rdfs:comment "Entities which has a somewhat fixed, physical extension."@en .
+    rdfs:domain mus:artist .
+mus:wasBornAt rdf:type owl:ObjectProperty ;
+    rdfs:label "Was Born At"@en ;
+        rdfs:comment "Relationship representing the geographic location an artist was born at"@en ;
+    rdfs:domain mus:artist ;
+    rdfs:range mus:place .
 
+mus:membership rdfs:isDefinedBy mus:musicOntology ;
+    rdf:type owl:Class ;
+    rdfs:label "Artist Brand Membership"@en ;
+        rdfs:comment "Relationship of an artist to its public facing entity i.e. Prince Rogers Nelson to The Artist Formerly Known as Prince." .
+mus:hasMember rdf:type own: ObjectProperty ;
+    rdfs:label "Has Membership"@en ;
+    rdfs:comment "Identifies an artist as having membership in a branded musical entity such as a band or solo artist."@en ;
+    rdfs:domain mus:membership ;
+    rdfs:range mus:artist .
+mus:startDate rdf:type own: ObjectProperty ;
+    rdfs:type owl:DatatypeProperty ;
+    rdfs:label "Start Date"@en ;
+    rdfs:comment "Start date of membership to related branded entity i.e. a band."@en ;
+    mus:domain mus:membership .
+mus:endDate rdf:type own: ObjectProperty ;
+    rdfs:type owl:DatatypeProperty ;
+    rdfs:label "End Date"@en ;
+    rdfs:comment "End date (if applicable) of membership to related branded entity i.e. a band."@en ;
+    mus:domain mus:membership .
 
-###################################
-# AYALETS WORK #
-###################################
+mus:artistBrand rdfs:isDefinedBy mus:musicOntology ;
+    rdf:type owl:Class ;
+    rdfs:label "Artist's Brand"@en ;
+        rdfs:comment "The brand to which the artist presents themself (usually commercially)." .
+mus:inBrand rdf:type owl:ObjectProperty ;
+    rdfs:label "In Brand"@en ;
+    rdfs:comment "Relationship between artist and branded entity."@en ;
+    rdfs:domain mus:artistBrand ;
+    rdfs:range mus:membership .
+mus:artistConfiguration rdf:type own: ObjectProperty ;
+    rdfs:type owl:DatatypeProperty ;
+    rdfs:label "Artist Configuration"@en ;
+    rdfs:comment "How the artists brand is configured i.e. as a enum of variants like Duo, Solo, Band etc."@en ;
+    mus:domain mus:artistBrand .
 
+mus:event rdfs:isDefinedBy mus:musicOntology ;
+    rdf:type owl:Class ;
+    rdfs:label "Event"@en ;
+        rdfs:comment "Musical event at which artists play typically to an audience." .
+mus:performedAtInspired rdf:type owl:ObjectProperty ;
+    rdfs:label "Performed At or Inspired"@en ;
+        rdfs:comment "Relationship between an Artist Brand and a musical event to which they were involved."@en ;
+    domain:artistBrand ;
+    range:event .
 
+mus:song rdfs:isDefinedBy mus:musicOntology ;
+    rdf:type owl:Class ;
+    rdfs:label "Song"@en ; # schema.org has this defined as a MusicRecording
+        rdfs:comment "A music recording (track), usually a single song." .
+mus:isKnownFor rdf:type owl:ObjectProperty ;
+    rdfs:label "Is Known For"@en ;
+        rdfs:comment "Relationship between an Artist Brand and a music recording (usually a song) for which the artist brand is known for."@en ;
+    domain:artistBrand ;
+    range:song .
+mus:playedIn rdf:type owl:ObjectProperty ;
+    rdfs:label "Played In"@en ;
+        rdfs:comment "Relationship between an Artist Brand and a music recording (usually a song) for which the artist brand played in."@en ;
+    domain:artistBrand ;
+    range:song .
 
-###################################
-# JEFFS WORK #
-###################################
-
-
-
-
-###################################
-# LOZS WORK #
-###################################
+mus:album rdfs:isDefinedBy mus:musicOntology ;
+    rdf:type owl:Class ;
+    rdfs:label "Album"@en ; #MusicAlbum on schema.org
+        rdfs:comment "A collection of music tracks." . # as defined by schema.org
+mus:isKnownFor rdf:type owl:ObjectProperty ;
+    rdfs:label "Is Known For"@en ;
+        rdfs:comment "Relationship between an Artist Brand and an album for which the artist brand is known for."@en ;
+    domain:artistBrand ;
+    range:album .
