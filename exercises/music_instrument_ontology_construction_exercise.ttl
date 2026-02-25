@@ -1,0 +1,61 @@
+# 1. PREFIX DECLARATIONS
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix ex:   <http://example.org/instruments/> .
+
+# ---------------------------------------------------------
+# PART A: DEFINING CLASSES (The "Nouns" of the ontology)
+# ---------------------------------------------------------
+
+# 2. Define 'Instrument' and 'Musician' as Classes.
+ex:Instrument rdf:type owl:Class .
+ex:Musician   rdf:type owl:Class .
+
+# 3. Define specific categories of instruments as narrower categories of 'Instrument'.
+ex:StringInstrument rdf:type owl:Class ;
+                    rdfs:subClassOf ex:Instrument .
+
+ex:PercussionInstrument rdf:type owl:Class ;
+                        rdfs:subClassOf ex:Instrument .
+
+ex:WindInstrument rdf:type owl:Class ;
+                  rdfs:subClassOf ex:Instrument .
+
+# ---------------------------------------------------------
+# PART B: DEFINING PROPERTIES (The "Verbs" of the ontology)
+# ---------------------------------------------------------
+
+# 4. & 5. Define 'playedBy' with Domain and Range.
+ex:playedBy rdf:type owl:ObjectProperty ;
+            rdfs:domain ex:Instrument ;
+            rdfs:range  ex:Musician .
+
+# 6. Define 'numberOfStrings' as a Datatype Property.
+ex:numberOfStrings rdf:type owl:DatatypeProperty .
+
+# ---------------------------------------------------------
+# PART C: CREATING INSTANCES (The Data / ABox)
+# ---------------------------------------------------------
+
+# 7. Create an instance of a Musician named 'JimiHendrix'.
+ex:JimiHendrix rdf:type ex:Musician .
+
+# 8. Create an instance of a StringInstrument named 'BlackStratocaster'.
+ex:BlackStratocaster rdf:type ex:StringInstrument .
+
+# 9. Connect the 'BlackStratocaster' to 'JimiHendrix'.
+ex:BlackStratocaster ex:playedBy ex:JimiHendrix .
+
+# 10. Assign the number of strings to the guitar.
+ex:BlackStratocaster ex:numberOfStrings "6"^^xsd:integer .
+
+# 11. Create an instance of a WindInstrument named 'MilesDavisTrumpet'.
+ex:MilesDavisTrumpet rdf:type ex:WindInstrument .
+
+# 12. Create an instance of a Musician named 'MilesDavis'.
+ex:MilesDavis rdf:type ex:Musician .
+
+# 13. Connect the trumpet to the musician.
+ex:MilesDavisTrumpet ex:playedBy ex:MilesDavis .

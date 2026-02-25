@@ -1,0 +1,433 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+# Controlled Vocabulary (SKOS) for musicians
+@prefix muv: <https://eu.cohort1.kgg.org/music/musicians_vocabulary#> .
+
+
+# =================================================================================================
+# Concept 'musician' is not in my concept scheme 
+# but is the overall concept for the 'musicians' group.
+# =================================================================================================
+
+# how to link my ConceptScheme musician_role to this Concept musician? Maybe using dct:subject muv:musician ?
+
+muv:musician rdf:type skos:Concept ;
+    skos:prefLabel "Musician"@en ;
+    skos:altLabel "Music performer"@en ,
+                  "Music artist"@en ;
+    skos:definition "A person who performs, composes, or conducts music as a profession or practice."@en ;
+    skos:exactMatch <https://www.wikidata.org/wiki/Q639669> .
+    skos:scopeNote "not in the ConceptScheme musician_role, but central Concept for group musicians."@en ;
+
+
+
+
+# =================================================================================================
+# ConceptScheme
+# =================================================================================================
+
+muv:musician_role rdf:type skos:ConceptScheme ;
+    skos:prefLabel "Musician Role"@en ;
+    skos:definition "Classification scheme for roles performed by musicians in the creation and performance of music."@en ;
+    skos:scopeNote "Top-level concept scheme; not an individual role but the organizing frame for all musician role concepts."@en ;
+    
+    dct:subject muv:musician ;   # right link to Concept musician?
+    
+    skos:hasTopConcept muv:instrumentalist ,
+                       muv:vocalist ,
+                       muv:composer ,
+                       muv:conductor .
+
+
+# =================================================================================================
+# L1 – Instrumentalist with sub categories
+# =================================================================================================
+
+muv:instrumentalist rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Instrumentalist"@en ;
+    skos:altLabel "Instrument player"@en ,
+                  "Instrumental musician"@en ,
+                  "Instrumental performer"@en ;
+    skos:definition "A musician who plays a musical instrument."@en ;
+    skos:exactMatch <https://www.wikidata.org/wiki/Q1278335> ;
+    skos:scopeNote "Broad category covering all instrument families including strings, wind, percussion, keyboards, and electronic instruments."@en ;
+    skos:topConceptOf muv:musician_role ;
+    skos:narrower muv:guitarist ,
+                  muv:pianist ,
+                  muv:drummer ,
+                  muv:bassist .
+
+# L2: Guitarist
+
+muv:guitarist rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Guitarist"@en ;
+    skos:altLabel "Guitar player"@en ;
+    skos:definition "A musician who plays the guitar."@en ;
+    skos:exactMatch <https://www.wikidata.org/wiki/Q855091> ;
+    skos:broader muv:instrumentalist ;
+    skos:narrower muv:acoustic_guitarist ,
+                  muv:electric_guitarist .
+
+muv:acoustic_guitarist rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Acoustic Guitarist"@en ;
+    skos:altLabel "Acoustic guitar player"@en ;
+    skos:definition "A guitarist who primarily performs on a non-amplified, steel-string or nylon-string acoustic guitar."@en ;
+    skos:broader muv:guitarist .
+
+muv:electric_guitarist rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Electric Guitarist"@en ;
+    skos:altLabel "Electric guitar player"@en ;
+    skos:definition "A guitarist who primarily performs on an electrically amplified guitar using pickups and an amplifier."@en ;
+    skos:broader muv:guitarist .
+
+# L2: Pianist
+
+muv:pianist rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Pianist"@en ;
+    skos:altLabel "Piano player"@en ,
+                  "Keyboarder"@en ;
+    skos:definition "A musician who plays the piano or keyboard instruments."@en ;
+    skos:exactMatch <https://www.wikidata.org/wiki/Q486748> ;
+    skos:broader muv:instrumentalist .
+
+# L2: Drummer
+
+muv:drummer rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Drummer"@en ;
+    skos:altLabel "Drum player"@en ;
+    skos:definition "A musician who plays drums or percussion instruments, typically a drum kit."@en ;
+    skos:exactMatch <https://www.wikidata.org/wiki/Q386854> ;
+    skos:broader muv:instrumentalist .
+
+# L2: Bassist
+
+muv:bassist rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Bassist"@en ;
+    skos:altLabel "Bass player"@en ,
+                  "Bass musician"@en ;
+    skos:definition "A musician who plays a bass instrument, providing the low-pitched rhythmic and harmonic foundation."@en ;
+    skos:exactMatch <https://www.wikidata.org/wiki/Q584301> ;
+    skos:broader muv:instrumentalist ;
+    skos:narrower muv:electric_bassist ,
+                  muv:upright_bassist .
+
+muv:electric_bassist rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Electric Bassist"@en ;
+    skos:altLabel "Electric bass player"@en ,
+                  "Bass guitarist"@en ;
+    skos:definition "A bassist who performs on an electric bass guitar."@en ;
+    skos:broader muv:bassist .
+
+muv:upright_bassist rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Upright Bassist"@en ;
+    skos:altLabel "Double bassist"@en ,
+                  "Contrabassist"@en ,
+                  "Stand-up bassist"@en ,
+                  "Acoustic bassist"@en ;
+    skos:definition "A bassist who performs on an acoustic upright (double) bass."@en ;
+    skos:broader muv:bassist .
+
+
+# =================================================================================================
+# L1 – Vocalist with sub categories
+# =================================================================================================
+
+muv:vocalist rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Vocalist"@en ;
+    skos:altLabel "Singer"@en ,
+                  "Voice artist"@en ,
+                  "Vocal performer"@en ;
+    skos:definition "A person who sings, using the human voice as the primary instrument."@en ;
+    skos:exactMatch <https://www.wikidata.org/wiki/Q177220> ;
+    skos:scopeNote "Broad category; sub-classifications follow vocal range (soprano, tenor), delivery style (rapper), or ensemble role (lead singer)."@en ;
+    skos:topConceptOf muv:musician_role ;
+    skos:narrower muv:rapper ,
+                  muv:lead_singer .
+
+# L2: Rapper
+
+muv:rapper rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Rapper"@en ;
+    skos:altLabel "Hip-hop artist"@en ,
+                  "Rap artist"@en ;
+    skos:definition "A vocalist who delivers rhythmic and rhyming speech over musical accompaniment."@en ;
+    skos:exactMatch <https://www.wikidata.org/wiki/Q2252262> ;
+    skos:broader muv:vocalist ;
+    skos:narrower muv:freestyle_rapper ,
+                  muv:battle_rapper .
+
+muv:freestyle_rapper rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Freestyle Rapper"@en ;
+    skos:altLabel "Freestyler"@en ,
+                  "Improvisational rapper"@en ;
+    skos:definition "A rapper who improvises lyrics spontaneously without pre-written material."@en ;
+    skos:broader muv:rapper .
+
+muv:battle_rapper rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Battle Rapper"@en ;
+    skos:altLabel "Rap battler"@en ;
+    skos:definition "A rapper who competes in head-to-head lyrical competitions against opponents."@en ;
+    skos:broader muv:rapper .
+
+# L2: Lead Singer
+
+muv:lead_singer rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Lead Singer"@en ;
+    skos:altLabel "Frontman"@en ,
+                  "Frontwoman"@en ,
+                  "Lead vocalist"@en ,
+                  "Front person"@en ;
+    skos:definition "The primary vocalist in a musical group who performs the main vocal melody."@en ;
+    skos:exactMatch <https://www.wikidata.org/wiki/Q63484477> ;
+    skos:broader muv:vocalist ;
+    skos:narrower muv:rock_vocalist ,
+                  muv:pop_vocalist ,
+                  muv:soul_singer .
+
+muv:rock_vocalist rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Rock Vocalist"@en ;
+    skos:altLabel "Rock singer"@en ,
+                  "Rock frontman"@en ;
+    skos:definition "A lead singer specializing in rock music and its subgenres."@en ;
+    skos:broader muv:lead_singer .
+
+muv:pop_vocalist rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Pop Vocalist"@en ;
+    skos:altLabel "Pop singer"@en ,
+                  "Pop artist"@en ;
+    skos:definition "A lead singer specializing in popular music."@en ;
+    skos:broader muv:lead_singer .
+
+muv:soul_singer rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Soul Singer"@en ;
+    skos:altLabel "R&B vocalist"@en ,
+                  "Soul vocalist"@en ,
+                  "Rhythm and blues singer"@en ;
+    skos:definition "A vocalist specializing in soul music, rhythm and blues, or gospel-influenced vocal styles."@en ;
+    skos:broader muv:lead_singer .
+
+
+# =============================================================================
+# L1 – Composer with sub categories
+# =============================================================================
+
+muv:composer rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Composer"@en ;
+    skos:altLabel "Music composer"@en ,
+                  "Music creator"@en ;
+    skos:definition "A person who creates musical compositions."@en ;
+    skos:exactMatch <https://www.wikidata.org/wiki/Q36834> ;
+    skos:scopeNote "Encompasses all forms of original music creation; distinct from performer roles though many musicians hold both roles."@en ;
+    skos:topConceptOf muv:musician_role ;
+    skos:narrower muv:songwriter ,
+                  muv:arranger ,
+                  muv:film_score_composer .
+
+# L2: Songwriter
+
+muv:songwriter rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Songwriter"@en ;
+    skos:altLabel "Song writer"@en ,
+                  "Song composer"@en ;
+    skos:definition "A person who writes the lyrics and/or melody of songs."@en ;
+    skos:exactMatch <https://www.wikidata.org/wiki/Q753110> ;
+    skos:broader muv:composer ;
+    skos:narrower muv:lyricist ,
+                  muv:singer_songwriter .
+
+muv:lyricist rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Lyricist"@en ;
+    skos:altLabel "Lyric writer"@en ,
+                  "Words writer"@en ,
+                  "Librettist"@en ;
+    skos:definition "A person who writes the text (lyrics) for songs or musical works."@en ;
+    skos:exactMatch <https://www.wikidata.org/wiki/Q822146> ;
+    skos:broader muv:songwriter .
+
+muv:singer_songwriter rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Singer-Songwriter"@en ;
+    skos:altLabel "Singer songwriter"@en ;
+    skos:definition "A musician who writes, composes, and performs their own musical material."@en ;
+    skos:exactMatch <https://www.wikidata.org/wiki/Q488205> ;
+    skos:broader muv:songwriter .
+
+# L2: Arranger
+
+muv:arranger rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Arranger"@en ;
+    skos:altLabel "Music arranger"@en ,
+                  "Musical arranger"@en ;
+    skos:definition "A musician who adapts a musical composition for particular instruments, voices, or ensembles."@en ;
+    skos:exactMatch <https://www.wikidata.org/wiki/Q1643514> ;
+    skos:broader muv:composer ;
+    skos:narrower muv:orchestral_arranger ,
+                  muv:vocal_arranger .
+
+muv:orchestral_arranger rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Orchestral Arranger"@en ;
+    skos:altLabel "Orchestrator"@en ;
+    skos:definition "An arranger who adapts musical works for orchestra, assigning parts to specific orchestral instruments."@en ;
+    skos:broader muv:arranger .
+
+muv:vocal_arranger rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Vocal Arranger"@en ;
+    skos:altLabel "Harmony arranger"@en ,
+                  "Choral arranger"@en ;
+    skos:definition "An arranger who creates vocal harmonies and part assignments for vocal groups or choirs."@en ;
+    skos:broader muv:arranger .
+
+# L2: Film Score Composer
+
+muv:film_score_composer rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Film Score Composer"@en ;
+    skos:altLabel "Film composer"@en ,
+                  "Screen composer"@en ,
+                  "Movie composer"@en ;
+    skos:definition "A composer who creates original music for films and other visual media."@en ;
+    skos:exactMatch <https://www.wikidata.org/wiki/Q1415090> ;
+    skos:broader muv:composer ;
+    skos:narrower muv:orchestral_film_composer ,
+                  muv:trailer_music_composer .
+
+muv:orchestral_film_composer rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Orchestral Film Composer"@en ;
+    skos:altLabel "Symphonic film composer"@en ;
+    skos:definition "A film score composer who works primarily with orchestral instrumentation and live ensembles."@en ;
+    skos:broader muv:film_score_composer .
+
+muv:trailer_music_composer rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Trailer Music Composer"@en ;
+    skos:altLabel "Trailer composer"@en ,
+                  "Promo music composer"@en ;
+    skos:definition "A composer who creates music specifically for film trailers and promotional media."@en ;
+    skos:broader muv:film_score_composer .
+
+
+# =================================================================================================
+# L1 – Conductor with sub categories
+# =================================================================================================
+
+muv:conductor rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Conductor"@en ;
+    skos:altLabel "Music conductor"@en ,
+                  "Maestro"@en ,
+                  "Music director"@en ;
+    skos:definition "A person who directs a musical ensemble through gestures and interpretation."@en ;
+    skos:exactMatch <https://www.wikidata.org/wiki/Q158852> ;
+    skos:scopeNote "Responsible for tempo, dynamics, cueing, and overall musical interpretation; uses baton or hand gestures."@en ;
+    skos:topConceptOf muv:musician_role ;
+    skos:narrower muv:orchestra_conductor ,
+                  muv:choral_conductor ,
+                  muv:band_director .
+
+# L2: Orchestra Conductor
+
+muv:orchestra_conductor rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Orchestra Conductor"@en ;
+    skos:altLabel "Orchestral conductor"@en ,
+                  "Orchestral director"@en ;
+    skos:definition "A conductor who directs an orchestra in performance and rehearsal."@en ;
+    skos:broader muv:conductor ;
+    skos:narrower muv:symphony_conductor ,
+                  muv:chamber_orchestra_conductor ,
+                  muv:opera_conductor .
+
+muv:symphony_conductor rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Symphony Conductor"@en ;
+    skos:altLabel "Symphonic conductor"@en ;
+    skos:definition "A conductor who directs a full symphony orchestra."@en ;
+    skos:broader muv:orchestra_conductor .
+
+muv:chamber_orchestra_conductor rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Chamber Orchestra Conductor"@en ;
+    skos:altLabel "Chamber ensemble conductor"@en ;
+    skos:definition "A conductor who directs a smaller chamber orchestra or ensemble."@en ;
+    skos:broader muv:orchestra_conductor .
+
+muv:opera_conductor rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Opera Conductor"@en ;
+    skos:altLabel "Operatic conductor"@en ;
+    skos:definition "A conductor who directs the orchestra for operatic performances from the pit."@en ;
+    skos:broader muv:orchestra_conductor .
+
+# L2: Choral Conductor
+
+muv:choral_conductor rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Choral Conductor"@en ;
+    skos:altLabel "Choir director"@en ,
+                  "Choirmaster"@en ,
+                  "Choir conductor"@en ;
+    skos:definition "A conductor who directs a choir or vocal ensemble."@en ;
+    skos:broader muv:conductor ;
+    skos:narrower muv:church_choir_director ,
+                  muv:concert_choir_conductor ,
+                  muv:youth_choir_conductor .
+
+muv:church_choir_director rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Church Choir Director"@en ;
+    skos:altLabel "Minister of music"@en ,
+                  "Worship music director"@en ,
+                  "Kantor"@en ;
+    skos:definition "A choral conductor who directs music in a religious worship context."@en ;
+    skos:broader muv:choral_conductor .
+
+muv:concert_choir_conductor rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Concert Choir Conductor"@en ;
+    skos:altLabel "Professional choir conductor"@en ;
+    skos:definition "A choral conductor who directs a professional or semi-professional concert choir."@en ;
+    skos:broader muv:choral_conductor .
+
+muv:youth_choir_conductor rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Youth Choir Conductor"@en ;
+    skos:altLabel "Children's choir director"@en ,
+                  "Junior choir conductor"@en ;
+    skos:definition "A choral conductor who directs a choir composed of young singers."@en ;
+    skos:broader muv:choral_conductor .
+
+# L2: Band Director
+
+muv:band_director rdf:type skos:Concept ;
+    skos:inScheme muv:musician_role ;
+    skos:prefLabel "Band Director"@en ;
+    skos:altLabel "Bandmaster"@en ,
+                  "Band leader"@en ,
+                  "Bandleader"@en ;
+    skos:definition "A conductor who directs a concert band, marching band, or similar wind and percussion ensemble."@en ;
+    skos:broader muv:conductor .

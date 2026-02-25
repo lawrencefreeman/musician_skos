@@ -1,0 +1,60 @@
+# 1. PREFIX DECLARATIONS
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix ex:   <http://example.org/musicgenre/> .
+
+# ---------------------------------------------------------
+# PART A: DEFINING CLASSES (The "Nouns" of the ontology)
+# ---------------------------------------------------------
+
+# 2. Define 'Genre', 'Artist', and 'Era' as Classes.
+ex:Genre  rdf:type owl:Class .
+ex:Artist rdf:type owl:Class .
+ex:Era    rdf:type owl:Class .
+
+# 3. Define 'SubGenre' as a Class and state that it is a narrower category of 'Genre'.
+ex:SubGenre rdf:type owl:Class ;
+            rdfs:subClassOf ex:Genre .
+
+# ---------------------------------------------------------
+# PART B: DEFINING PROPERTIES (The "Verbs" of the ontology)
+# ---------------------------------------------------------
+
+# 4. & 5. Define 'playsGenre' with Domain and Range.
+ex:playsGenre rdf:type owl:ObjectProperty ;
+              rdfs:domain ex:Artist ;
+              rdfs:range  ex:Genre .
+
+# 6. Define 'originatesFrom' to link a Genre to an Era.
+ex:originatesFrom rdf:type owl:ObjectProperty ;
+                  rdfs:domain ex:Genre ;
+                  rdfs:range  ex:Era .
+
+# 7. Define 'yearEstablished' as a Datatype Property.
+ex:yearEstablished rdf:type owl:DatatypeProperty .
+
+# ---------------------------------------------------------
+# PART C: CREATING INSTANCES (The Data / ABox)
+# ---------------------------------------------------------
+
+# 8. Create an instance of a Genre named 'Rock'.
+ex:Rock rdf:type ex:Genre .
+
+# 9. Create an instance of a SubGenre named 'Punk'.
+ex:Punk rdf:type ex:SubGenre .
+
+# 10. Create an instance of an Era named 'Seventies' and assign it a year.
+ex:Seventies rdf:type ex:Era ;
+             ex:yearEstablished "1970"^^xsd:integer .
+
+# 11. Connect the 'Punk' subgenre to the 'Seventies' era.
+ex:Punk ex:originatesFrom ex:Seventies .
+
+# 12. Create an Artist instance named 'TheRamones'.
+ex:TheRamones rdf:type ex:Artist .
+
+# 13. Connect the artist to the genre they play.
+ex:TheRamones ex:playsGenre ex:Punk .
+

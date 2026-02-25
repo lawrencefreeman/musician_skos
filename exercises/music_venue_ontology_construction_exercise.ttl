@@ -1,0 +1,66 @@
+
+# 1. PREFIX DECLARATIONS
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix ex:   <http://example.org/musicevents/> .
+
+# ---------------------------------------------------------
+# PART A: DEFINING CLASSES (The "Nouns" of the ontology)
+# ---------------------------------------------------------
+
+# 2. Define 'Event', 'Venue', and 'Artist' as Classes.
+ex:Event  rdf:type owl:Class .
+ex:Venue  rdf:type owl:Class .
+ex:Artist rdf:type owl:Class .
+
+# 3. Define 'Concert', 'Festival', and 'Meetup' as narrower categories of 'Event'.
+ex:Concert rdf:type owl:Class ;
+           rdfs:subClassOf ex:Event .
+
+ex:Festival rdf:type owl:Class ;
+            rdfs:subClassOf ex:Event .
+
+ex:Meetup rdf:type owl:Class ;
+          rdfs:subClassOf ex:Event .
+
+# ---------------------------------------------------------
+# PART B: DEFINING PROPERTIES (The "Verbs" of the ontology)
+# ---------------------------------------------------------
+
+# 4. & 5. Define 'takesPlaceAt' with Domain and Range.
+ex:takesPlaceAt rdf:type owl:ObjectProperty ;
+                rdfs:domain ex:Event ;
+                rdfs:range  ex:Venue .
+
+# 6. Define 'headlinedBy' to link an Event to an Artist.
+ex:headlinedBy rdf:type owl:ObjectProperty ;
+               rdfs:domain ex:Event ;
+               rdfs:range  ex:Artist .
+
+# 7. Define 'estimatedAttendance' as a Datatype Property.
+ex:estimatedAttendance rdf:type owl:DatatypeProperty .
+
+# ---------------------------------------------------------
+# PART C: CREATING INSTANCES (The Data / ABox)
+# ---------------------------------------------------------
+
+# 8. Create an instance of a Venue.
+ex:WembleyStadium rdf:type ex:Venue .
+
+# 9. Create an instance of an Artist.
+ex:Queen rdf:type ex:Artist .
+
+# 10. Create an instance of a Festival with attendance.
+ex:LiveAid rdf:type ex:Festival ;
+           ex:estimatedAttendance "72000"^^xsd:integer .
+
+# 11. Connect LiveAid to WembleyStadium.
+ex:LiveAid ex:takesPlaceAt ex:WembleyStadium .
+
+# 12. Connect the festival to the headlining artist.
+ex:LiveAid ex:headlinedBy ex:Queen .
+
+# 13. Create an instance of a Meetup.
+ex:LocalJazzFans rdf:type ex:Meetup .
