@@ -74,9 +74,13 @@ mus:solo rdf:type skos:Concept, mus:artistConfiguration ;
     skos:prefLabel "Solo"@en ;
     skos:definition "Solo Artist." .
 
+# ArtistConfiguration: Band
 mus:band rdf:type skos:Concept, mus:artistConfiguration ;
     skos:prefLabel "Band"@en ;
-    skos:definition "A musical group comprising of a band." .
+    skos:altLabel "Group"@en ,
+                  "Ensemble"@en ;
+    skos:definition "A musical group of two or more artists performing under a shared brand name."@en .
+
 
 mus:isKnownAsSong rdf:type owl:ObjectProperty;
     rdfs:domain mus:membership ;
@@ -491,3 +495,175 @@ mus:TheWho rdf:type mus:artistBrand ;
     mus:playedIn mus:pinballWizard ;
     mus:isKnownForAlbum mus:quadrophenia ;
     mus:plays mus:elecricGuitar, mus:drums .
+
+
+#Madonna:
+mus:copacabanaBeachConcert rdf:type mus:event .
+
+mus:frozen rdf:type mus:song .
+
+mus:likeAPrayer rdf:type mus:album .
+
+mus:aycityMichigan rdf:type mus:place .
+
+mus:MadonnaLouiseVeronicaCiccone rdf:type mus:artist ;
+    mus:name "Madonna Louise Ciccone"@en . 
+
+mus:CicconeAsMadonna rdf:type mus:membership ;
+    mus:hasMember mus:MadonnaLouiseVeronicaCiccone ;
+    mus:inBrand mus:Madonna .
+
+mus:Madonna rdf:type mus:artistBrand ;
+    mus:artistConfiguration mus:solo ;
+    mus:performedAt mus:copacabanaBeachConcert ;
+    mus:isKnownForSong mus:frozen ;
+    mus:playedIn mus:frozen ;
+    mus:isKnownForAlbum mus:likeAPrayer ;
+    mus:wasBornAt mus:baycityMichigan ;
+    mus:knownFor_v2 mus:Popular .
+#Taylor Swift: 
+mus:MTVVideoMusicAwards2023 rdf:type mus:event .
+
+mus:cruelSummer rdf:type mus:song .
+
+mus:lover rdf:type mus:album .
+
+mus:westreadingPennsylvania rdf:type mus:place .
+
+mus:TaylorAlisonSwift rdf:type mus:artist ;
+    mus:name "Taylor Alison Swift"@en . 
+
+mus:AlisonAsTaylorSwift rdf:type mus:membership ;
+    mus:hasMember mus:TaylorAlisonSwift ;
+    mus:inBrand mus:TaylorSwift .
+
+mus:TaylorSwift rdf:type mus:artistBrand ;
+    mus:artistConfiguration mus:solo ;
+    mus:performedAt mus:MTVVideoMusicAwards2023 ;
+    mus:isKnownForSong mus:cruelSummer ;
+    mus:playedIn mus:cruelSummer ;
+    mus:isKnownForAlbum mus:lover ;
+    mus:wasBornAt mus:westreadingPennsylvania ;
+    mus:knownFor_v2 mus:Popular .
+
+
+#Beyonce:
+mus:SuperBowlHalftimeShow rdf:type mus:event .
+
+mus:halo rdf:type mus:song .
+
+mus:lemonade rdf:type mus:album .
+
+mus:HoustonTexas rdf:type mus:place .
+
+mus:BeyonceGiselleKnowlesCarter rdf:type mus:artist ;
+    mus:name "Beyonce Giselle Knowles-Carter"@en . 
+
+mus:GiselleAsBeyonce rdf:type mus:membership ;
+    mus:hasMember mus:BeyonceGiselleKnowlesCarter ;
+    mus:inBrand mus:Beyonce .
+
+mus:Beyonce rdf:type mus:artistBrand ;
+    mus:artistConfiguration mus:solo ;
+    mus:performedAt mus:SuperBowlHalftimeShow ;
+    mus:isKnownForSong mus:halo ;
+    mus:playedIn mus:halo ;
+    mus:isKnownForAlbum mus:lemonade ;
+    mus:wasBornAt mus:HoustonTexas .
+
+
+# CBox for Mick Jagger
+
+mus:LeadSinger rdf:type mus:Role , skos:Concept ;
+    skos:inScheme mus:musician_roles ;
+    skos:prefLabel "Lead Singer"@en ;
+    skos:altLabel "Frontman"@en ,
+                  "Frontwoman"@en ,
+                  "Lead vocalist"@en ,
+                  "Front person"@en ;
+    skos:definition "The primary vocalist in a musical group who performs the main vocal melody."@en ;
+    skos:exactMatch <https://www.wikidata.org/wiki/Q63484477> ;
+    skos:broader mus:Vocalist ;
+    skos:narrower mus:RockVocalist .
+
+mus:RockVocalist rdf:type mus:Role , skos:Concept ;
+    skos:inScheme mus:musician_roles ;
+    skos:prefLabel "Rock Vocalist"@en ;
+    skos:altLabel "Rock singer"@en ,
+                  "Rock frontman"@en ;
+    skos:definition "A lead singer specializing in rock music and its subgenres."@en ;
+    skos:broader mus:LeadSinger .
+
+mus:Songwriter rdf:type mus:Role , skos:Concept ;
+    skos:inScheme mus:musician_roles ;
+    skos:prefLabel "Songwriter"@en ;
+    skos:altLabel "Song writer"@en ,
+                  "Song composer"@en ;
+    skos:definition "A person who writes the lyrics and/or melody of songs."@en ;
+    skos:exactMatch <https://www.wikidata.org/wiki/Q753110> ;
+    skos:broader mus:Composer .
+
+mus:HarmonicaPlayer rdf:type mus:Role , skos:Concept ;
+    skos:inScheme mus:musician_roles ;
+    skos:prefLabel "Harmonica Player"@en ;
+    skos:altLabel "Harp player"@en ,
+                  "Blues harp player"@en ;
+    skos:definition "A musician who plays the harmonica (mouth organ), a free-reed wind instrument."@en ;
+    skos:exactMatch <https://www.wikidata.org/wiki/Q13382576> ;
+    skos:broader mus:Instrumentalist .
+
+
+
+
+# =========================================================================
+# ABox – Mick Jagger / The Rolling Stones (NEW)
+# =========================================================================
+
+# Artist / real person
+mus:MichaelPhilipJagger rdf:type mus:artist ;
+    mus:name "Michael Philip Jagger"@en ;
+    mus:wasBornAt mus:dartfordKent .
+
+# Places
+mus:dartfordKent rdf:type skos:Concept, mus:place ;
+    skos:inScheme mus:geoLocations ;
+    skos:prefLabel "Dartford, Kent"@en ;
+    skos:broader mus:united_kingdom .
+
+# Songs
+mus:satisfactionICantGetNo rdf:type mus:song .
+mus:sympathyForTheDevil rdf:type mus:song .
+mus:paintItBlack rdf:type mus:song .
+
+# Albums
+mus:letItBleed rdf:type mus:album .
+mus:exileOnMainSt rdf:type mus:album .
+mus:stickyFingers rdf:type mus:album .
+
+# Events
+mus:glastonbury2013 rdf:type mus:event .
+mus:superbowlXL rdf:type mus:event .
+
+
+# ArtistBrand
+mus:TheRollingStones rdf:type mus:artistBrand ;
+    mus:artistConfiguration mus:band ;
+    mus:isKnownForSong mus:satisfactionICantGetNo ;
+    mus:isKnownForSong mus:sympathyForTheDevil ;
+    mus:isKnownForSong mus:paintItBlack ;
+    mus:isKnownForAlbum mus:letItBleed ;
+    mus:isKnownForAlbum mus:exileOnMainSt ;
+    mus:isKnownForAlbum mus:stickyFingers ;
+    mus:performedAt mus:glastonbury2013 ;
+    mus:performedAt mus:superbowlXL .
+
+# Membership & Role
+mus:MickAsRollingStone rdf:type mus:Membership ;
+    mus:hasMember mus:MichaelPhilipJagger ;
+    mus:inBrand mus:TheRollingStones ;
+    mus:hasRole mus:LeadSinger ,            # primary: frontman since day one
+               mus:RockVocalist ,           # genre-specific specialization
+               mus:Songwriter ,             # Jagger/Richards partnership
+               mus:HarmonicaPlayer ;        # plays harmonica live & on recordings
+    mus:startDate "1962-07-12"^^xsd:date .  # first gig at the Marquee Club
+    # no mus:endDate — still active
