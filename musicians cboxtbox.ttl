@@ -166,7 +166,7 @@ mus:heyday rdf:type owl:DatatypeProperty ;
     rdfs:comment "The peak decade of the artist's career, represented as the starting year of the decade (e.g., 1980 for the 1980s)."@en .
 
 # Generic Membership class
-mus:Membership rdf:type owl:Class ;
+mus:membershipembership rdf:type owl:Class ;
     rdfs:isDefinedBy mus:musicOntology ;
     rdfs:label "Membership"@en ;
     rdfs:comment "A more generic relation representing the participation of an Artist in an ArtistBrand during a specific time period. Used for e.g. the role(s) fulfilled."@en .
@@ -185,21 +185,21 @@ mus:Role rdf:type owl:Class ;
 # a Membership has a Member which is the artist
 mus:hasMember rdf:type owl:ObjectProperty ;
     rdfs:isDefinedBy mus:musicOntology ;
-    rdfs:domain mus:Membership ;
+    rdfs:domain mus:membership ;
     rdfs:range mus:artist ;
     rdfs:label "has member"@en ;
     rdfs:comment "Links a Membership to the Artist (person) who participates."@en .
 
 mus:inBrand rdf:type owl:ObjectProperty ;
     rdfs:isDefinedBy mus:musicOntology ;
-    rdfs:domain mus:Membership ;
+    rdfs:domain mus:membership ;
     rdfs:range mus:artistBrand ;
     rdfs:label "in brand"@en ;
     rdfs:comment "Links a Membership to the ArtistBrand in which the artist participates."@en .
 
 mus:hasRole rdf:type owl:ObjectProperty ;
     rdfs:isDefinedBy mus:musicOntology ;
-    rdfs:domain mus:Membership ;
+    rdfs:domain mus:membership ;
     rdfs:range mus:Role ;
     rdfs:label "has role"@en ;
     rdfs:comment "Links a Membership to the Role the artist fulfils in that brand."@en .
@@ -209,14 +209,14 @@ mus:hasRole rdf:type owl:ObjectProperty ;
 
 mus:startDate rdf:type owl:DatatypeProperty ;
     rdfs:isDefinedBy mus:musicOntology ;
-    rdfs:domain mus:Membership ;
+    rdfs:domain mus:membership ;
     rdfs:range xsd:date ;
     rdfs:label "start date"@en ;
     rdfs:comment "The date on which the membership began."@en .
 
 mus:endDate rdf:type owl:DatatypeProperty ;
     rdfs:isDefinedBy mus:musicOntology ;
-    rdfs:domain mus:Membership ;
+    rdfs:domain mus:membership ;
     rdfs:range xsd:date ;
     rdfs:label "end date"@en ;
     rdfs:comment "The date on which the membership ended. Absent if still active."@en .
@@ -478,7 +478,10 @@ mus:RogerDaltry rdf:type mus:artist ;
 
 mus:RDasTheWhoMembership rdf:type mus:membership ;
     mus:hasMember mus:RogerDaltry ;
-    mus:inBrand mus:TheWho .
+    mus:inBrand mus:TheWho ;
+    mus:hasRole mus:LeadSinger ,            # primary: frontman since day one
+               mus:RockVocalist ,           # genre-specific specialization
+               mus:Songwriter .             # Jagger/Richards partnership
 
 mus:PeteTownsend rdf:type mus:artist ;
     mus:name "Pete Townsend."@en ; # abox, not a uri
@@ -486,7 +489,10 @@ mus:PeteTownsend rdf:type mus:artist ;
 
 mus:PTasTheWhoMembership rdf:type mus:membership ;
     mus:hasMember mus:PeteTownsend ;
-    mus:inBrand mus:TheWho .
+    mus:inBrand mus:TheWho ;
+    mus:hasRole mus:LeadSinger ,            # primary: frontman since day one
+        mus:RockVocalist ,           # genre-specific specialization
+        mus:Songwriter .             # Jagger/Richards partnership
 
 mus:TheWho rdf:type mus:artistBrand ;
     mus:artistConfiguration mus:band ;
@@ -658,7 +664,7 @@ mus:TheRollingStones rdf:type mus:artistBrand ;
     mus:performedAt mus:superbowlXL .
 
 # Membership & Role
-mus:MickAsRollingStone rdf:type mus:Membership ;
+mus:MickAsRollingStone rdf:type mus:membership ;
     mus:hasMember mus:MichaelPhilipJagger ;
     mus:inBrand mus:TheRollingStones ;
     mus:hasRole mus:LeadSinger ,            # primary: frontman since day one
