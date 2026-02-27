@@ -36,6 +36,13 @@ mus:age rdf:type owl:DatatypeProperty ;
     rdfs:label "Age"@en ;
     rdfs:comment "The age of the artist in years."@en .
 
+# DatatypeProperty name
+mus:name rdf:type owl:DatatypeProperty ;
+    rdfs:isDefinedBy mus:musicOntology ;
+    rdfs:domain mus:artist ;
+    rdfs:range xsd:string ; # dont need this
+    rdfs:label "Name"@en ;
+    rdfs:comment "The name of the artist."@en .
 
 # Loz -------------------------------------------------------------------------------------
 
@@ -44,6 +51,11 @@ mus:place rdfs:isDefinedBy mus:musicOntology ;
     rdfs:label "Geographic place"@en ;
     rdfs:comment "Entities which has a somewhat fixed, physical extension."@en .
 
+mus:wasBornAt rdf:type owl:ObjectProperty ;
+    rdfs:label "Was Born At"@en ;
+        rdfs:comment "Relationship representing the geographic location an artist was born at"@en ;
+    rdfs:domain mus:artist ;
+    rdfs:range mus:place .
 
 # Ayelet -------------------------------------------------------------------------------------
 
@@ -54,17 +66,23 @@ mus:artistBrand rdfs:isDefinedBy mus:musicianOntology;
     rdfs:label "Artist Brand"@en ;
     rdfs:comment "The artist or artists stage name under which they are performing, for example: The Beatles, Madonna, Motzart, Taylor Swift etc."@en.
 
-mus:artistConfiguration rdf:type owl:DatatypeProperty ;
+mus:artistConfiguration rdf:type owl:ObjectProperty ; #make this an object property not a datatype property
     rdfs:domain mus:artistBrand ;
-    rdfs:range xsd:string ;
-    rdfs:label "Age"@en ;
-    rdfs:comment "The age of the artist."@en.  
+    rdfs:range xsd:string .
 
-mus:isKnownAs rdf:type owl:ObjectProperty;
+mus:solo rdf:type skos:Concept, mus:artistConfiguration ;
+    skos:prefLabel "Solo"@en ;
+    skos:definition "Solo Artist." .
+
+mus:band rdf:type skos:Concept, mus:artistConfiguration ;
+    skos:prefLabel "Band"@en ;
+    skos:definition "A musical group comprising of a band." .
+
+mus:isKnownAsSong rdf:type owl:ObjectProperty;
     rdfs:domain mus:membership ;
     rdfs:range mus:artistBrand .
 
-mus:isKnownFor rdf:type owl:ObjectProperty;
+mus:isKnownForAlbum rdf:type owl:ObjectProperty;
     rdfs:domain mus:artistBrand ;
     rdfs:range mus:album .
 
@@ -76,6 +94,22 @@ mus:performedAt rdf:type owl:ObjectProperty;
     rdfs:domain mus:artistBrand ;
     rdfs:range mus:event .
 
+
+mus:event rdfs:isDefinedBy mus:musicianOntology;
+    rdf:type owl:Class ;
+    rdfs:label "Event"@en ;
+    rdfs:comment "Musical Event."@en.
+
+
+mus:song rdfs:isDefinedBy mus:musicOntology ;
+    rdf:type owl:Class ;
+    rdfs:label "Song"@en ; # schema.org has this defined as a MusicRecording
+    rdfs:comment "A music recording (track), usually a single song." .
+
+mus:album rdfs:isDefinedBy mus:musicOntology ;
+    rdf:type owl:Class ;
+    rdfs:label "Album"@en ; #MusicAlbum on schema.org
+    rdfs:comment "A collection of music tracks." . # as defined by schema.org
 
 #defining the entity: Instrument: 
 mus:instrument rdfs:isDefinedBy mus:musicianOntology;
@@ -104,6 +138,17 @@ mus:knownFor_v2 rdf:type owl:ObjectProperty; # ???
     rdfs:domain mus:artistBrand ;
     rdfs:range mus:genre .
 
+mus:bassGuitar rdf:type skos: Concept , mus:instrument;
+    skos:prefLabel "Bass";
+    skos:definition "Bass Guitar.".
+
+mus:drums rdf:type skos: Concept , mus:instrument;
+    skos:prefLabel "Drums";
+    skos:definition "Drums.".
+
+mus:electricGuitar rdf:type skos: Concept , mus:instrument;
+    skos:prefLabel "Electric Guitare";
+    skos:definition "Electric Guitar.".
 
 # Jeff -------------------------------------------------------------------------------------
 
@@ -213,6 +258,31 @@ mus:finland rdf:type skos:Concept, mus:place ;
     skos:prefLabel "Finland"@en ;
     skos:definition "Finland,[a] officially the Republic of Finland,[b][c] is a Nordic country in Northern Europe. It borders Sweden to the northwest, Norway to the north, and Russia to the east, with the Gulf of Bothnia to the west and the Gulf of Finland to the south, opposite Estonia. Its capital and largest city is Helsinki. Finland has a population of 5.6 million.[9] The official languages are Finnish and Swedish, the mother tongues of 84.1 percent and 5.1 percent of the population, respectively." ;
     skos:exact
+
+mus:united_states rdf:type skos:Concept, mus:place ;
+    skos:inScheme mus:geoLocations ;
+    skos:prefLabel "United Stated of America"@en ;
+    skos:altLabel "United States, U.S., USA"@en ;
+    skos:definition "The United States of America (USA), also known as the United States (U.S.) or America, is a country primarily located in North America. It is a federal republic of 50 states and a federal capital district, Washington, D.C. The 48 contiguous states border Canada t" ;
+    skos:exactMatch "<https://en.wikipedia.org/wiki/United_States>" ;
+    skos:scopeNote "Fetched form wikidata" ;
+    skos:broader mus:north_america .
+
+mus:seattle rdf:type skos:Concept, mus:place ;
+    skos:inScheme mus:geoLocations ;
+    skos:prefLabel "Seattle"@en ;
+    skos:definition "Seattle (/siˈætəl/ ⓘ see-AT-əl) is the most populous city in the U.S. state of Washington and the Pacific Northwest region of North America." ;
+    skos:exactMatch "<https://en.wikipedia.org/wiki/Seattle>" ;
+    skos:scopeNote "Fetched form wikidata" ;
+    skos:broader mus:united_states .
+
+mus:london rdf:type skos:Concept, mus:place ;
+    skos:inScheme mus:geoLocations ;
+    skos:prefLabel "London"@en ;
+    skos:definition "London[c] is the capital and largest city[d] of both England and the United Kingdom, with a population of 9.1 million people in 2024.[2] Its wider metropolitan area is the largest in Western Europe, with a population of 15.1 million.[4] London stands on the River Thames in southeast England, at the head of a 50-mile (80 km) tidal estuary down to the North Sea, and has been a major settlement for nearly 2,000 years." ;
+    skos:exactMatch "<https://en.wikipedia.org/wiki/London>" ;
+    skos:scopeNote "Fetched form wikidata" ;
+    skos:broader mus:united_kingdom .
 
 # Ayelet -------------------------------------------------------------------------------------
 
@@ -328,6 +398,96 @@ mus:Conductor rdf:type mus:Role , skos:Concept ;
     skos:prefLabel "Conductor"@en ;
     skos:definition "A person who directs a musical ensemble through gestures and interpretation."@en .
 
+# CBox
+mus:Rapper rdf:type mus:Role, skos:Concept ;
+    skos:inScheme mus:musician_role ;
+    skos:prefLabel "Rapper"@en ;
+    skos:altLabel "Hip-hop artist"@en ,
+                  "Rap artist"@en ;
+    skos:definition "A vocalist who delivers rhythmic and rhyming speech over musical accompaniment."@en ;
+    skos:exactMatch <https://www.wikidata.org/wiki/Q2252262> ;
+    skos:broader mus:vocalist ;
+    skos:narrower mus:freestyle_rapper ,
+                  mus:battle_rapper .
 
 
+#ABox
+mus:trumpInaugurationWeekend rdf:type mus:event .
 
+mus:woodStock rdf:type mus:event .
+
+mus:dropItLikeItsHot rdf:type mus:song .
+
+mus:littleWing rdf:type mus:song .
+
+mus:pinballWizard rdf:type mus:song .
+
+mus:theDogFather rdf:type mus:album .
+
+mus:axisBoldAsLove rdf:type mus:album .
+
+mus:quadrophenia rdf:type mus:album .
+
+mus:longBeachCalifornia rdf:type mus:place .
+
+
+# Snoop Dog playing at Trump thing
+mus:CalvinCordozarBroadusJr rdf:type mus:artist ;
+    mus:name "Calvin Cordozar Broadus Jr."@en ; # abox, not a uri
+    mus:wasBornAt mus:longBeachCalifornia .
+
+mus:CalvinAsSnoop rdf:type mus:membership ;
+    mus:hasMember mus:CalvinCordozarBroadusJr ;
+    mus:inBrand mus:SnoopDog .
+
+mus:SnoopDog rdf:type mus:artistBrand ;
+    mus:artistConfiguration mus:solo ;
+    mus:performedAt mus:trumpInaugurationWeekend ;
+    mus:isKnownForSong mus:dropItLikeItsHot ;
+    mus:playedIn mus:dropItLikeItsHot ;
+    mus:isKnownForAlbum mus:theDogFather ;
+    mus:plays mus:bassGuitar . #abox
+
+# Jimmi Hendrix playing at Woodstock
+mus:JohnnyAllenHendrix rdf:type mus:artist ;
+    mus:name "Johnny Allen Hendrix"@en ; # abox, not a uri
+    mus:wasBornAt mus:seattle .
+
+mus:JohnnyAsJimmy rdf:type mus:membership ;
+    mus:hasMember mus:JohnnyAllenHendrix ;
+    mus:inBrand mus:JimmiHendrix .
+
+mus:JimmiHendrix rdf:type mus:artistBrand ;
+    mus:artistConfiguration mus:solo ;
+    mus:performedAt mus:woodStock ;
+    mus:isKnownForSong mus:littleWing ;
+    mus:playedIn mus:littleWing ;
+    mus:isKnownForAlbum mus:axisBoldAsLove ;
+    mus:plays mus:bassGuitar ;
+     #cbox
+
+
+# 2 members of the who - also played at woodstock
+mus:RogerDaltry rdf:type mus:artist ;
+    mus:name "Roger Daltry."@en ; # abox, not a uri
+    mus:wasBornAt mus:london .
+
+mus:RDasTheWhoMembership rdf:type mus:membership ;
+    mus:hasMember mus:RogerDaltry ;
+    mus:inBrand mus:TheWho .
+
+mus:PeteTownsend rdf:type mus:artist ;
+    mus:name "Pete Townsend."@en ; # abox, not a uri
+    mus:wasBornAt mus:london .
+
+mus:PTasTheWhoMembership rdf:type mus:membership ;
+    mus:hasMember mus:PeteTownsend ;
+    mus:inBrand mus:TheWho .
+
+mus:TheWho rdf:type mus:artistBrand ;
+    mus:artistConfiguration mus:band ;
+    mus:performedAt mus:woodStock ;
+    mus:isKnownForSong mus:pinballWizard ;
+    mus:playedIn mus:pinballWizard ;
+    mus:isKnownForAlbum mus:quadrophenia ;
+    mus:plays mus:elecricGuitar, mus:drums .
