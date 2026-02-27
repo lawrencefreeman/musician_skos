@@ -7,6 +7,7 @@
 # SKOS related prefixes
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dct: <http://purl.org/dc/terms/> .
+@prefix wikidata: <https://www.wikidata.org/wiki/Wikidata:Main_Page/> .
 
 
 ### Your group's namespace ###
@@ -142,15 +143,15 @@ mus:knownFor_v2 rdf:type owl:ObjectProperty; # ???
     rdfs:domain mus:artistBrand ;
     rdfs:range mus:genre .
 
-mus:bassGuitar rdf:type skos: Concept , mus:instrument;
+mus:bassGuitar rdf:type skos:Concept , mus:instrument;
     skos:prefLabel "Bass";
     skos:definition "Bass Guitar.".
 
-mus:drums rdf:type skos: Concept , mus:instrument;
+mus:drums rdf:type skos:Concept , mus:instrument;
     skos:prefLabel "Drums";
     skos:definition "Drums.".
 
-mus:electricGuitar rdf:type skos: Concept , mus:instrument;
+mus:electricGuitar rdf:type skos:Concept , mus:instrument;
     skos:prefLabel "Electric Guitare";
     skos:definition "Electric Guitar.".
 
@@ -227,7 +228,7 @@ mus:endDate rdf:type owl:DatatypeProperty ;
 
 # Loz -------------------------------------------------------------------------------------
 
-mus:geoLocations rdfs:isDefinedBy mus: rdf:type skos:ConceptScheme ;
+mus:geoLocations rdf:type skos:ConceptScheme ;
     skos:prefLabel "Geographic Location"@en ;
     skos:altLabel "geo location" ;
     skos:definition "In geography, location or place is used to denote a region (point, line, or area) on Earth's surface. The term location generally implies a higher degree of certainty than place, the latter often indicating an entity with an ambiguous boundary, relying more on human or social attributes of place identity and sense of place than on geometry." ;
@@ -260,8 +261,7 @@ mus:united_kingdom rdf:type skos:Concept, mus:place ;
 mus:finland rdf:type skos:Concept, mus:place ;
     skos:inScheme mus:geoLocations ;
     skos:prefLabel "Finland"@en ;
-    skos:definition "Finland,[a] officially the Republic of Finland,[b][c] is a Nordic country in Northern Europe. It borders Sweden to the northwest, Norway to the north, and Russia to the east, with the Gulf of Bothnia to the west and the Gulf of Finland to the south, opposite Estonia. Its capital and largest city is Helsinki. Finland has a population of 5.6 million.[9] The official languages are Finnish and Swedish, the mother tongues of 84.1 percent and 5.1 percent of the population, respectively." ;
-    skos:exact
+    skos:definition "Finland,[a] officially the Republic of Finland,[b][c] is a Nordic country in Northern Europe. It borders Sweden to the northwest, Norway to the north, and Russia to the east, with the Gulf of Bothnia to the west and the Gulf of Finland to the south, opposite Estonia. Its capital and largest city is Helsinki. Finland has a population of 5.6 million.[9] The official languages are Finnish and Swedish, the mother tongues of 84.1 percent and 5.1 percent of the population, respectively." .
 
 mus:united_states rdf:type skos:Concept, mus:place ;
     skos:inScheme mus:geoLocations ;
@@ -291,7 +291,7 @@ mus:london rdf:type skos:Concept, mus:place ;
 # Ayelet -------------------------------------------------------------------------------------
 
 
-genre:musicGenre  rdf: type skos: ConceptScheme ;    
+mus:musicGenre  rdf:type skos:ConceptScheme ;    
     skos:prefLabel "Music Genre";
     skos:altLabel "Music Genres";
     skos:altLabel "Music by Genre";
@@ -301,55 +301,55 @@ genre:musicGenre  rdf: type skos: ConceptScheme ;
 
 #L1:
 
-genre:Classical rdf:type skos: Concept , mus:genre;
-    skos:inScheme Music Genre ;
+mus:Classical rdf:type skos:Concept , mus:genre;
+    skos:inScheme mus:musicGenre ;
     skos:prefLabel "Classical";
     skos:altLabel "Formal Music";
     skos:altLabel "Canonic Music";
     skos:definition "The art music from the middle age to the present.";
     skos:exactMatch wikidata:Q9730;
-    skos:topConceptOf Music Genre.
+    skos:topConceptOf mus:musicGenre.
 
-genre:Popular rdf:type skos: Concept , mus:genre;
-    skos:inScheme Music Genre ;
+mus:Popular rdf:type skos:Concept , mus:genre;
+    skos:inScheme mus:musicGenre ;
     skos:prefLabel "Popular";
     skos:definition "Music with wide-appeal distributed to large audiences through the music industry.";
     skos:exactMatch wikidata:Q37073;
-    skos:topConceptOf Music Genre.
+    skos:topConceptOf mus:musicGenre.
 
 #L2:
-genre:westernClassical rdf:type skos: Concept , mus:genre;
-    skos:inScheme Music Genre ;
+mus:westernClassical rdf:type skos:Concept , mus:genre;
+    skos:inScheme mus:musicGenre ;
     skos:prefLabel "Western Classical";
     skos:altLabel "Western Classical Music Styles";
     skos:definition "The art music of the western world from the middle age to the present.";
     skos:exactMatch wikidata:Q8133273;
-    skos:broader Classical.
+    skos:broader mus:Classical.
 
-genre:Blues rdf:type skos: Concept , mus:genre;
-    skos:inScheme Music Genre ;
+mus:Blues rdf:type skos:Concept , mus:genre;
+    skos:inScheme mus:musicGenre ;
     skos:prefLabel "Blues";
     skos:definition "A type of music incorporated spirituals, work songs, field hollers, shouts, chants, and rhymed simple narrative ballads from the African-American culture";
     skos:exactMatch wikidata:Q9759;
-    skos:broader Popular.
+    skos:broader mus:Popular.
 
 #L3:
-genre:Renaissance rdf:type skos: Concept , mus:genre;
-    skos:inScheme Music Genre ;
+mus:Renaissance rdf:type skos:Concept , mus:genre;
+    skos:inScheme mus:musicGenre ;
     skos:prefLabel "Renaissance";
     skos:altLabel "Renaissance Era Music";
     skos:definition "The art music of the renaissance era.";
-    skos:exactMatch wikidata: Q8133273;
-    skos:broader Western Classical.
+    skos:exactMatch wikidata:Q8133273;
+    skos:broader mus:westernClassical .
 
 
-genre:Baroque rdf:type skos: Concept , mus:genre;
-    skos: nScheme Music Genre ;
+mus:Baroque rdf:type skos:Concept , mus:genre;
+    skos:inScheme mus:musicGenre ;
     skos:prefLabel "Baroque";
     skos:altLabel "Music of the Baroquec";
     skos:definition "The art music of the renaissance era.";
-    skos:exactMatch wikidata: Q8361;
-    skos:broader Western Classical.
+    skos:exactMatch wikidata:Q8361;
+    skos:broader mus:westernClassical .
 
 
 
@@ -467,7 +467,7 @@ mus:JimmiHendrix rdf:type mus:artistBrand ;
     mus:isKnownForSong mus:littleWing ;
     mus:playedIn mus:littleWing ;
     mus:isKnownForAlbum mus:axisBoldAsLove ;
-    mus:plays mus:bassGuitar ;
+    mus:plays mus:bassGuitar .
      #cbox
 
 
