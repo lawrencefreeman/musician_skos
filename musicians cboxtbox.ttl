@@ -1,0 +1,333 @@
+### General W3C namespaces ###
+
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+# SKOS related prefixes
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+
+
+### Your group's namespace ###
+
+# Ontology for musicians
+@prefix mus:  <https://eu.cohort1.kgg.org/music/musicians_ontology#> .
+
+### CLASS DEFINITIONS ###
+
+# --- Ontology Declaration done together ---
+mus:musicOntology rdf:type owl:Ontology ;
+    rdfs:label "The Musicians Ontology"@en ;
+    rdfs:comment "An ontology for modelling musicians, their roles, instruments, genres, and musical works."@en .
+
+
+# Class Artist
+mus:artist rdf:type owl:Class ;
+    rdfs:isDefinedBy mus:musicOntology ;
+    rdfs:label "Artist"@en ;
+    rdfs:comment "A person or group that creates, performs, or contributes to musical works."@en .
+
+# DatatypeProperty age
+mus:age rdf:type owl:DatatypeProperty ;
+    rdfs:isDefinedBy mus:musicOntology ;
+    rdfs:domain mus:artist ;
+    rdfs:range xsd:integer ;
+    rdfs:label "Age"@en ;
+    rdfs:comment "The age of the artist in years."@en .
+
+
+# Loz -------------------------------------------------------------------------------------
+
+mus:place rdfs:isDefinedBy mus:musicOntology ;
+    rdf:type owl:Class ;
+    rdfs:label "Geographic place"@en ;
+    rdfs:comment "Entities which has a somewhat fixed, physical extension."@en .
+
+
+# Ayelet -------------------------------------------------------------------------------------
+
+
+#defining the entity: Artist brand::after
+mus:artistBrand rdfs:isDefinedBy mus:musicianOntology;
+    rdf:type owl:Class ;
+    rdfs:label "Artist Brand"@en ;
+    rdfs:comment "The artist or artists stage name under which they are performing, for example: The Beatles, Madonna, Motzart, Taylor Swift etc."@en.
+
+mus:artistConfiguration rdf:type owl:DatatypeProperty ;
+    rdfs:domain mus:artistBrand ;
+    rdfs:range xsd:string ;
+    rdfs:label "Age"@en ;
+    rdfs:comment "The age of the artist."@en.  
+
+mus:isKnownAs rdf:type owl:ObjectProperty;
+    rdfs:domain mus:membership ;
+    rdfs:range mus:artistBrand .
+
+mus:isKnownFor rdf:type owl:ObjectProperty;
+    rdfs:domain mus:artistBrand ;
+    rdfs:range mus:album .
+
+mus:playedIn rdf:type owl:ObjectProperty;
+    rdfs:domain mus:artistBrand ;
+    rdfs:range mus:song .
+
+mus:performedAt rdf:type owl:ObjectProperty;
+    rdfs:domain mus:artistBrand ;
+    rdfs:range mus:event .
+
+
+#defining the entity: Instrument: 
+mus:instrument rdfs:isDefinedBy mus:musicianOntology;
+    rdf:type owl:Class ;
+    rdfs:label "Instrument"@en ;
+    rdfs:comment "the music instrument that the artist is playing on."@en.
+
+mus:plays rdf:type owl:ObjectProperty;
+    rdfs:domain mus:artist ;
+    rdfs:range mus:instrument .
+
+mus:plays_v2 rdf:type owl:ObjectProperty; # ???
+    rdfs:domain mus:artistBrand ;
+    rdfs:range mus:instrument .
+
+mus:genre rdfs:isDefinedBy mus:musicianOntology;
+    rdf:type owl:Class ;
+    rdfs:label "Genre"@en ;
+    rdfs:comment "the music type that the artist is focused on."@en.
+
+mus:knownFor rdf:type owl:ObjectProperty;
+    rdfs:domain mus:artist ;
+    rdfs:range mus:genre .
+
+mus:knownFor_v2 rdf:type owl:ObjectProperty; # ???
+    rdfs:domain mus:artistBrand ;
+    rdfs:range mus:genre .
+
+
+# Jeff -------------------------------------------------------------------------------------
+
+# Peak Decade of the artist
+mus:heyday rdf:type owl:DatatypeProperty ;
+    rdfs:isDefinedBy mus:musicOntology ;
+    rdfs:domain mus:artist ;
+    rdfs:range xsd:gYear ;
+    rdfs:label "Heyday"@en ;
+    rdfs:comment "The peak decade of the artist's career, represented as the starting year of the decade (e.g., 1980 for the 1980s)."@en .
+
+# Generic Membership class
+mus:Membership rdf:type owl:Class ;
+    rdfs:isDefinedBy mus:musicOntology ;
+    rdfs:label "Membership"@en ;
+    rdfs:comment "A more generic relation representing the participation of an Artist in an ArtistBrand during a specific time period. Used for e.g. the role(s) fulfilled."@en .
+
+# Class Role (TBox definition — rdfs:isDefinedBy is correct here on a Class)
+mus:Role rdf:type owl:Class ;
+    rdfs:isDefinedBy mus:musicOntology ;
+    rdfs:label "Role"@en ;
+    rdfs:comment "The function an artist fulfils within an ArtistBrand, e.g., instrumentalist, vocalist, conductor, composer."@en .
+
+
+# ---------------------------------------------------------------------------------
+# Relation Artist to Artist Brand using Membership
+# ---------------------------------------------------------------------------------
+
+# a Membership has a Member which is the artist
+mus:hasMember rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy mus:musicOntology ;
+    rdfs:domain mus:Membership ;
+    rdfs:range mus:artist ;
+    rdfs:label "has member"@en ;
+    rdfs:comment "Links a Membership to the Artist (person) who participates."@en .
+
+mus:inBrand rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy mus:musicOntology ;
+    rdfs:domain mus:Membership ;
+    rdfs:range mus:artistBrand ;
+    rdfs:label "in brand"@en ;
+    rdfs:comment "Links a Membership to the ArtistBrand in which the artist participates."@en .
+
+mus:hasRole rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy mus:musicOntology ;
+    rdfs:domain mus:Membership ;
+    rdfs:range mus:Role ;
+    rdfs:label "has role"@en ;
+    rdfs:comment "Links a Membership to the Role the artist fulfils in that brand."@en .
+
+
+# Membership datatype properties
+
+mus:startDate rdf:type owl:DatatypeProperty ;
+    rdfs:isDefinedBy mus:musicOntology ;
+    rdfs:domain mus:Membership ;
+    rdfs:range xsd:date ;
+    rdfs:label "start date"@en ;
+    rdfs:comment "The date on which the membership began."@en .
+
+mus:endDate rdf:type owl:DatatypeProperty ;
+    rdfs:isDefinedBy mus:musicOntology ;
+    rdfs:domain mus:Membership ;
+    rdfs:range xsd:date ;
+    rdfs:label "end date"@en ;
+    rdfs:comment "The date on which the membership ended. Absent if still active."@en .
+
+
+
+
+#### SKOS DEFINITIONS ####
+
+# Loz -------------------------------------------------------------------------------------
+
+mus:geoLocations rdfs:isDefinedBy mus: rdf:type skos:ConceptScheme ;
+    skos:prefLabel "Geographic Location"@en ;
+    skos:altLabel "geo location" ;
+    skos:definition "In geography, location or place is used to denote a region (point, line, or area) on Earth's surface. The term location generally implies a higher degree of certainty than place, the latter often indicating an entity with an ambiguous boundary, relying more on human or social attributes of place identity and sense of place than on geometry." ;
+    skos:exactMatch "<https://en.wikipedia.org/wiki/Location>" ;
+    skos:scopeNote "Fetched form wikidata" ;
+    skos:hasTopConcept mus:europe, mus:north_america . # cool that we can comma seperate a list.
+
+mus:europe rdf:type skos:Concept, mus:place ;
+    skos:inScheme mus:geoLocations ;
+    skos:prefLabel "Europe"@en ;
+    skos:definition "Europe is a continent[t] located entirely in the Northern Hemisphere and mostly in the Eastern Hemisphere." ;
+    skos:exactMatch "<https://en.wikipedia.org/wiki/Europe>" ;
+    skos:scopeNote "Fetched form wikidata" .
+
+mus:north_america rdf:type skos:Concept, mus:place ;
+    skos:inScheme mus:geoLocations ;
+    skos:prefLabel "North America"@en ;
+    skos:definition "North America is a continent[b] in the Northern and Western hemispheres.[c] North America is bordered to the north by the Arctic Ocean, to the east by the Atlantic Ocean, to the southeast by South America and the Caribbean Sea, and to the south and west by the Pacific Ocean. The region includes Middle America comprising the Caribbean, Central America, and Northern America." ;
+    skos:exactMatch "<https://en.wikipedia.org/wiki/North_America>" ;
+    skos:scopeNote "Fetched form wikidata" .
+
+mus:united_kingdom rdf:type skos:Concept, mus:place ;
+    skos:inScheme mus:geoLocations ;
+    skos:prefLabel "United Kingdom"@en ;
+    skos:definition "The United Kingdom of Great Britain and Northern Ireland, commonly known as the United Kingdom (UK) or Britain,[m] is a country in northwestern Europe, off the coast of the continental mainland. It comprises England, Scotland, Wales and Northern Ireland,[n] with a population of over 69 million in 2024. The UK includes the island of Great Britain, the north-eastern part of the island of Ireland, and most of the smaller islands within the British Isles, covering 94,354 square miles (244,376 km2)." ;
+    skos:exactMatch "<https://en.wikipedia.org/wiki/United_Kingdom>" ;
+    skos:scopeNote "Fetched form wikidata" ;
+    skos:broader mus:europe .
+
+mus:finland rdf:type skos:Concept, mus:place ;
+    skos:inScheme mus:geoLocations ;
+    skos:prefLabel "Finland"@en ;
+    skos:definition "Finland,[a] officially the Republic of Finland,[b][c] is a Nordic country in Northern Europe. It borders Sweden to the northwest, Norway to the north, and Russia to the east, with the Gulf of Bothnia to the west and the Gulf of Finland to the south, opposite Estonia. Its capital and largest city is Helsinki. Finland has a population of 5.6 million.[9] The official languages are Finnish and Swedish, the mother tongues of 84.1 percent and 5.1 percent of the population, respectively." ;
+    skos:exact
+
+# Ayelet -------------------------------------------------------------------------------------
+
+
+genre:musicGenre  rdf: type skos: ConceptScheme ;    
+    skos:prefLabel "Music Genre";
+    skos:altLabel "Music Genres";
+    skos:altLabel "Music by Genre";
+    skos:altLabel "Musical Genre";
+    skos:definition "The type of music that a musician is focused on.";
+    skos:exactMatch wikidata:Q188451.
+
+#L1:
+
+genre:Classical rdf:type skos: Concept , mus:genre;
+    skos:inScheme Music Genre ;
+    skos:prefLabel "Classical";
+    skos:altLabel "Formal Music";
+    skos:altLabel "Canonic Music";
+    skos:definition "The art music from the middle age to the present.";
+    skos:exactMatch wikidata:Q9730;
+    skos:topConceptOf Music Genre.
+
+genre:Popular rdf:type skos: Concept , mus:genre;
+    skos:inScheme Music Genre ;
+    skos:prefLabel "Popular";
+    skos:definition "Music with wide-appeal distributed to large audiences through the music industry.";
+    skos:exactMatch wikidata:Q37073;
+    skos:topConceptOf Music Genre.
+
+#L2:
+genre:westernClassical rdf:type skos: Concept , mus:genre;
+    skos:inScheme Music Genre ;
+    skos:prefLabel "Western Classical";
+    skos:altLabel "Western Classical Music Styles";
+    skos:definition "The art music of the western world from the middle age to the present.";
+    skos:exactMatch wikidata:Q8133273;
+    skos:broader Classical.
+
+genre:Blues rdf:type skos: Concept , mus:genre;
+    skos:inScheme Music Genre ;
+    skos:prefLabel "Blues";
+    skos:definition "A type of music incorporated spirituals, work songs, field hollers, shouts, chants, and rhymed simple narrative ballads from the African-American culture";
+    skos:exactMatch wikidata:Q9759;
+    skos:broader Popular.
+
+#L3:
+genre:Renaissance rdf:type skos: Concept , mus:genre;
+    skos:inScheme Music Genre ;
+    skos:prefLabel "Renaissance";
+    skos:altLabel "Renaissance Era Music";
+    skos:definition "The art music of the renaissance era.";
+    skos:exactMatch wikidata: Q8133273;
+    skos:broader Western Classical.
+
+
+genre:Baroque rdf:type skos: Concept , mus:genre;
+    skos: nScheme Music Genre ;
+    skos:prefLabel "Baroque";
+    skos:altLabel "Music of the Baroquec";
+    skos:definition "The art music of the renaissance era.";
+    skos:exactMatch wikidata: Q8361;
+    skos:broader Western Classical.
+
+
+
+# Jeff -------------------------------------------------------------------------------------
+
+mus:musician_roles rdf:type skos:ConceptScheme ;
+    rdfs:label "Musicians Roles"@en ;
+    skos:prefLabel "Musician Role"@en ;
+    skos:definition "Classification scheme for roles performed by musicians in the creation and performance of music."@en ;
+    skos:scopeNote "Top-level concept scheme; not an individual role but the organizing frame for all musician role concepts."@en ;
+    dct:subject mus:musician ;   # right link to Concept musician?
+    skos:hasTopConcept mus:instrumentalist ,
+                       mus:vocalist ,
+                       mus:composer ,
+                       mus:conductor .
+
+
+# L1 – Top-level Roles
+
+mus:Instrumentalist rdf:type mus:Role , skos:Concept ;
+    skos:inScheme mus:musician_roles ;
+    skos:topConceptOf mus:musician_roles ;
+    skos:prefLabel "Instrumentalist"@en ;
+    skos:altLabel "Instrument player"@en ,
+                  "Instrumental musician"@en ,
+                  "Instrumental performer"@en ;
+    skos:definition "A musician who plays a musical instrument."@en ;
+    skos:exactMatch <https://www.wikidata.org/wiki/Q1278335> ;
+    skos:scopeNote "Broad category covering all instrument families including strings, wind, percussion, keyboards, and electronic instruments."@en ;
+    skos:narrower mus:Guitarist ,
+                  mus:Pianist ,
+                  mus:Drummer ,
+                  mus:Bassist .
+
+mus:Vocalist rdf:type mus:Role , skos:Concept ;
+    skos:inScheme mus:musician_roles ;
+    skos:topConceptOf mus:musician_roles ;
+    skos:prefLabel "Vocalist"@en ;
+    skos:definition "A person who sings, using the human voice as the primary instrument."@en .
+
+mus:Composer rdf:type mus:Role , skos:Concept ;
+    skos:inScheme mus:musician_roles ;
+    skos:topConceptOf mus:musician_roles ;
+    skos:prefLabel "Composer"@en ;
+    skos:definition "A person who creates musical compositions."@en .
+
+mus:Conductor rdf:type mus:Role , skos:Concept ;
+    skos:inScheme mus:musician_roles ;
+    skos:topConceptOf mus:musician_roles ;
+    skos:prefLabel "Conductor"@en ;
+    skos:definition "A person who directs a musical ensemble through gestures and interpretation."@en .
+
+
+
+
