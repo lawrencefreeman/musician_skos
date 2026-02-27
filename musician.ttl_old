@@ -20,7 +20,7 @@ mus:age rdf:type owl:DatatypeProperty ;
 mus:place rdfs:isDefinedBy mus:musicOntology ;
     rdf:type owl:Class ;
     rdfs:label "Geographic place"@en ;
-        rdfs:comment "Entities which has a somewhat fixed, physical extension."@en .
+        rdfs:comment "Entities which has a somewhat fixed, physical extension."@en ;
     rdfs:domain mus:artist .
 mus:wasBornAt rdf:type owl:ObjectProperty ;
     rdfs:label "Was Born At"@en ;

@@ -7,7 +7,8 @@ geo:geoLocations rdf:type skos:ConceptScheme ;
     skos:altLabel "geo location" ;
     skos:definition "In geography, location or place is used to denote a region (point, line, or area) on Earth's surface. The term location generally implies a higher degree of certainty than place, the latter often indicating an entity with an ambiguous boundary, relying more on human or social attributes of place identity and sense of place than on geometry." ;
     skos:exactMatch "<https://en.wikipedia.org/wiki/Location>" ;
-    skos:scopeNote "Fetched form wikidata" .
+    skos:scopeNote "Fetched form wikidata" ;
+    skos:hasTopConcept geo:europe, geo:north_america . # cool that we can comma seperate a list.
 
 geo:europe rdf:type skos:Concept ;
     skos:inScheme geo:geoLocations ;
