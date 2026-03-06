@@ -673,3 +673,174 @@ mus:MickAsRollingStone rdf:type mus:membership ;
                mus:HarmonicaPlayer ;        # plays harmonica live & on recordings
     mus:startDate "1962-07-12"^^xsd:date .  # first gig at the Marquee Club
     # no mus:endDate — still active
+
+
+
+
+#################################################
+# NEW CLASSES
+#################################################
+
+### Musical Attribute superclass
+mus:MusicalAttribute rdf:type owl:Class ;
+    rdfs:isDefinedBy mus:musicOntology ;
+    rdfs:label "Musical Attribute"@en ;
+    rdfs:comment "Abstract superclass for musical descriptive attributes such as vocal range or instrument family."@en .
+
+#################################################
+# VOCAL RANGE
+#################################################
+
+mus:VocalRange rdf:type owl:Class ;
+    rdfs:subClassOf mus:MusicalAttribute ;
+    rdfs:isDefinedBy mus:musicOntology ;
+    rdfs:label "Vocal Range"@en ;
+    rdfs:comment "Classification of a singer's vocal register."@en .
+
+mus:Countertenor rdf:type owl:Class ;
+    rdfs:subClassOf mus:VocalRange ;
+    rdfs:label "Countertenor"@en .
+
+mus:Tenor rdf:type owl:Class ;
+    rdfs:subClassOf mus:VocalRange ;
+    rdfs:label "Tenor"@en .
+
+mus:Baritone rdf:type owl:Class ;
+    rdfs:subClassOf mus:VocalRange ;
+    rdfs:label "Baritone"@en .
+
+mus:Soprano rdf:type owl:Class ;
+    rdfs:subClassOf mus:VocalRange ;
+    rdfs:label "Soprano"@en .
+
+
+#################################################
+# INSTRUMENT FAMILY
+#################################################
+
+mus:InstrumentFamily rdf:type owl:Class ;
+    rdfs:subClassOf mus:MusicalAttribute ;
+    rdfs:isDefinedBy mus:musicOntology ;
+    rdfs:label "Instrument Family"@en ;
+    rdfs:comment "A family grouping of musical instruments."@en .
+
+mus:StringFamily rdf:type owl:Class ;
+    rdfs:subClassOf mus:InstrumentFamily ;
+    rdfs:label "String Instruments"@en .
+
+mus:PercussionFamily rdf:type owl:Class ;
+    rdfs:subClassOf mus:InstrumentFamily ;
+    rdfs:label "Percussion Instruments"@en .
+
+mus:WoodwindFamily rdf:type owl:Class ;
+    rdfs:subClassOf mus:InstrumentFamily ;
+    rdfs:label "Woodwind Instruments"@en .
+
+mus:BrassFamily rdf:type owl:Class ;
+    rdfs:subClassOf mus:InstrumentFamily ;
+    rdfs:label "Brass Instruments"@en .
+
+mus:ElectronicFamily rdf:type owl:Class ;
+    rdfs:subClassOf mus:InstrumentFamily ;
+    rdfs:label "Electronic Instruments"@en .
+
+
+#################################################
+# EVENT SPECIALIZATION
+#################################################
+
+mus:PerformanceEvent rdf:type owl:Class ;
+    rdfs:subClassOf mus:event ;
+    rdfs:isDefinedBy mus:musicOntology ;
+    rdfs:label "Performance Event"@en ;
+    rdfs:comment "An event where musicians perform live or broadcast performances."@en .
+
+mus:Concert rdf:type owl:Class ;
+    rdfs:subClassOf mus:PerformanceEvent ;
+    rdfs:label "Concert"@en .
+
+mus:TVPerformance rdf:type owl:Class ;
+    rdfs:subClassOf mus:PerformanceEvent ;
+    rdfs:label "Television Performance"@en .
+
+
+#################################################
+# ARTIST BRAND SPECIALIZATION
+#################################################
+
+mus:CollaborationProject rdf:type owl:Class ;
+    rdfs:subClassOf mus:artistBrand ;
+    rdfs:isDefinedBy mus:musicOntology ;
+    rdfs:label "Collaboration Project"@en ;
+    rdfs:comment "A temporary collaboration between artists under a shared name."@en .
+
+
+#################################################
+# NEW PROPERTIES
+#################################################
+
+mus:hasVocalRange rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy mus:musicOntology ;
+    rdfs:domain mus:artist ;
+    rdfs:range mus:VocalRange ;
+    rdfs:label "has vocal range"@en ;
+    rdfs:comment "Links an artist to their vocal range classification."@en .
+
+
+mus:playsInstrumentFamily rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy mus:musicOntology ;
+    rdfs:domain mus:artist ;
+    rdfs:range mus:InstrumentFamily ;
+    rdfs:label "plays instrument family"@en ;
+    rdfs:comment "Links an artist to the family of instruments they perform with."@en .
+
+
+#################################################
+# STYLE DIMENSION
+#################################################
+
+mus:MusicalStyle rdf:type owl:Class ;
+    rdfs:isDefinedBy mus:musicOntology ;
+    rdfs:label "Musical Style"@en .
+
+mus:hasMusicalStyle rdf:type owl:ObjectProperty ;
+    rdfs:domain mus:artistBrand ;
+    rdfs:range mus:MusicalStyle .
+
+
+#################################################
+# CULTURAL SCENE
+#################################################
+
+mus:CulturalScene rdf:type owl:Class ;
+    rdfs:subClassOf mus:place ;
+    rdfs:label "Cultural Scene"@en .
+
+mus:associatedScene rdf:type owl:ObjectProperty ;
+    rdfs:domain mus:artistBrand ;
+    rdfs:range mus:CulturalScene .
+
+
+#################################################
+# MEDIA COMPOSITION
+#################################################
+
+mus:MediaComposition rdf:type owl:Class ;
+    rdfs:subClassOf mus:album ;
+    rdfs:label "Media Composition"@en .
+
+mus:FilmSoundtrack rdfs:subClassOf mus:MediaComposition .
+mus:GameSoundtrack rdfs:subClassOf mus:MediaComposition .
+
+mus:composedForMedia rdf:type owl:ObjectProperty ;
+    rdfs:domain mus:artist ;
+    rdfs:range mus:MediaComposition .
+
+
+#################################################
+# COLLABORATION GRAPH
+#################################################
+
+mus:collaboratedWith rdf:type owl:ObjectProperty ;
+    rdfs:domain mus:artist ;
+    rdfs:range mus:artist .
