@@ -697,20 +697,16 @@ mus:VocalRange rdf:type owl:Class ;
     rdfs:label "Vocal Range"@en ;
     rdfs:comment "Classification of a singer's vocal register."@en .
 
-mus:Countertenor rdf:type owl:Class ;
-    rdfs:subClassOf mus:VocalRange ;
+mus:Countertenor rdf:type mus:VocalRange ; # abox intances therefore not class
     rdfs:label "Countertenor"@en .
 
-mus:Tenor rdf:type owl:Class ;
-    rdfs:subClassOf mus:VocalRange ;
+mus:Tenor rdf:type mus:VocalRange;
     rdfs:label "Tenor"@en .
 
-mus:Baritone rdf:type owl:Class ;
-    rdfs:subClassOf mus:VocalRange ;
+mus:Baritone rdf:type mus:VocalRange;;
     rdfs:label "Baritone"@en .
 
-mus:Soprano rdf:type owl:Class ;
-    rdfs:subClassOf mus:VocalRange ;
+mus:Soprano rdf:type mus:VocalRange;;
     rdfs:label "Soprano"@en .
 
 

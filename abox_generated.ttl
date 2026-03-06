@@ -1,0 +1,203 @@
+@prefix mus: <https://eu.cohort1.kgg.org/music/musicians_ontology#> .
+
+@prefix artist: <https://eu.cohort1.kgg.org/music/musicians_ontology#data/artist/> .
+@prefix brand: <https://eu.cohort1.kgg.org/music/musicians_ontology#data/brand/> .
+@prefix album: <https://eu.cohort1.kgg.org/music/musicians_ontology#data/album/> .
+@prefix song: <https://eu.cohort1.kgg.org/music/musicians_ontology#data/song/> .
+@prefix genre: <https://eu.cohort1.kgg.org/music/musicians_ontology#data/genre/> .
+@prefix place: <https://eu.cohort1.kgg.org/music/musicians_ontology#data/place/> .
+@prefix event: <https://eu.cohort1.kgg.org/music/musicians_ontology#data/event/> .
+@prefix instrument: <https://eu.cohort1.kgg.org/music/musicians_ontology#data/instrument/> .
+
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix oa: <http://www.w3.org/ns/oa#> .
+
+#################################################
+# PLACES
+#################################################
+
+place:london a mus:Place .
+place:sheffield a mus:Place .
+place:salzburg a mus:Place .
+place:vienna a mus:Place .
+place:bethel-new-york a mus:Place .
+
+#################################################
+# GENRES
+#################################################
+
+genre:progressive-rock a mus:Genre .
+genre:psychedelic-rock a mus:Genre .
+genre:art-rock a mus:Genre .
+genre:hard-rock a mus:Genre .
+genre:heavy-metal a mus:Genre .
+
+#################################################
+# INSTRUMENTS
+#################################################
+
+instrument:guitar a mus:Instrument .
+instrument:bass-guitar a mus:Instrument .
+instrument:drums a mus:Instrument .
+instrument:keyboards a mus:Instrument .
+instrument:vocals a mus:Instrument .
+instrument:piano a mus:Instrument .
+instrument:violin a mus:Instrument .
+
+#################################################
+# ARTIST BRANDS (BANDS)
+#################################################
+
+brand:pink-floyd a mus:ArtistBrand ;
+    mus:originPlace place:london ;
+    mus:hasGenre genre:progressive-rock ;
+    mus:hasGenre genre:psychedelic-rock ;
+    prov:wasDerivedFrom [
+        a oa:TextPositionSelector ;
+        oa:hasSource <https://en.wikipedia.org/wiki/Pink_Floyd>
+    ] .
+
+brand:def-leppard a mus:ArtistBrand ;
+    mus:originPlace place:sheffield ;
+    mus:hasGenre genre:hard-rock ;
+    mus:hasGenre genre:heavy-metal ;
+    prov:wasDerivedFrom [
+        a oa:TextPositionSelector ;
+        oa:hasSource <https://en.wikipedia.org/wiki/Def_Leppard>
+    ] .
+
+brand:santana a mus:ArtistBrand .
+brand:the-who a mus:ArtistBrand .
+brand:jefferson-airplane a mus:ArtistBrand .
+
+#################################################
+# ARTISTS
+#################################################
+
+artist:syd-barrett a mus:Artist ;
+    mus:memberOf brand:pink-floyd ;
+    mus:playsInstrument instrument:guitar ;
+    mus:playsInstrument instrument:vocals ;
+    prov:wasDerivedFrom [
+        a oa:TextPositionSelector ;
+        oa:hasSource <https://en.wikipedia.org/wiki/Pink_Floyd>
+    ] .
+
+artist:roger-waters a mus:Artist ;
+    mus:memberOf brand:pink-floyd ;
+    mus:playsInstrument instrument:bass-guitar ;
+    mus:playsInstrument instrument:vocals .
+
+artist:nick-mason a mus:Artist ;
+    mus:memberOf brand:pink-floyd ;
+    mus:playsInstrument instrument:drums .
+
+artist:richard-wright a mus:Artist ;
+    mus:memberOf brand:pink-floyd ;
+    mus:playsInstrument instrument:keyboards .
+
+artist:david-gilmour a mus:Artist ;
+    mus:memberOf brand:pink-floyd ;
+    mus:playsInstrument instrument:guitar ;
+    mus:playsInstrument instrument:vocals .
+
+artist:joe-elliott a mus:Artist ;
+    mus:memberOf brand:def-leppard ;
+    mus:playsInstrument instrument:vocals .
+
+artist:rick-savage a mus:Artist ;
+    mus:memberOf brand:def-leppard ;
+    mus:playsInstrument instrument:bass-guitar .
+
+artist:rick-allen a mus:Artist ;
+    mus:memberOf brand:def-leppard ;
+    mus:playsInstrument instrument:drums .
+
+artist:phil-collen a mus:Artist ;
+    mus:memberOf brand:def-leppard ;
+    mus:playsInstrument instrument:guitar .
+
+artist:vivian-campbell a mus:Artist ;
+    mus:memberOf brand:def-leppard ;
+    mus:playsInstrument instrument:guitar .
+
+artist:jimi-hendrix a mus:Artist .
+artist:janis-joplin a mus:Artist .
+
+artist:wolfgang-amadeus-mozart a mus:Artist ;
+    mus:originPlace place:salzburg ;
+    mus:activePlace place:vienna ;
+    mus:playsInstrument instrument:piano ;
+    mus:playsInstrument instrument:violin ;
+    prov:wasDerivedFrom [
+        a oa:TextPositionSelector ;
+        oa:hasSource <https://en.wikipedia.org/wiki/Wolfgang_Amadeus_Mozart>
+    ] .
+
+#################################################
+# ALBUMS
+#################################################
+
+album:the-piper-at-the-gates-of-dawn a mus:Album ;
+    mus:createdBy brand:pink-floyd .
+
+album:a-saucerful-of-secrets a mus:Album ;
+    mus:createdBy brand:pink-floyd .
+
+album:meddle a mus:Album ;
+    mus:createdBy brand:pink-floyd .
+
+album:the-dark-side-of-the-moon a mus:Album ;
+    mus:createdBy brand:pink-floyd ;
+    mus:hasGenre genre:progressive-rock .
+
+album:wish-you-were-here a mus:Album ;
+    mus:createdBy brand:pink-floyd .
+
+album:animals a mus:Album ;
+    mus:createdBy brand:pink-floyd .
+
+album:the-wall a mus:Album ;
+    mus:createdBy brand:pink-floyd .
+
+album:pyromania a mus:Album ;
+    mus:createdBy brand:def-leppard .
+
+album:hysteria a mus:Album ;
+    mus:createdBy brand:def-leppard .
+
+album:adrenalize a mus:Album ;
+    mus:createdBy brand:def-leppard .
+
+#################################################
+# SONGS
+#################################################
+
+song:arnold-layne a mus:Song ;
+    mus:performedBy brand:pink-floyd .
+
+song:see-emily-play a mus:Song ;
+    mus:performedBy brand:pink-floyd .
+
+song:another-brick-in-the-wall a mus:Song ;
+    mus:performedBy brand:pink-floyd .
+
+song:comfortably-numb a mus:Song ;
+    mus:performedBy brand:pink-floyd .
+
+song:don-giovanni a mus:Song ;
+    mus:composedBy artist:wolfgang-amadeus-mozart .
+
+song:the-magic-flute a mus:Song ;
+    mus:composedBy artist:wolfgang-amadeus-mozart .
+
+#################################################
+# EVENTS
+#################################################
+
+event:woodstock-1969 a mus:Event ;
+    mus:eventPlace place:bethel-new-york ;
+    prov:wasDerivedFrom [
+        a oa:TextPositionSelector ;
+        oa:hasSource <https://en.wikipedia.org/wiki/Woodstock>
+    ] .
