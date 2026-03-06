@@ -7,6 +7,7 @@
 # SKOS related prefixes
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dct: <http://purl.org/dc/terms/> .
+@prefix wikidata: <https://www.wikidata.org/wiki/Wikidata:Main_Page/> .
 
 
 ### Your group's namespace ###
@@ -142,15 +143,15 @@ mus:knownFor_v2 rdf:type owl:ObjectProperty; # ???
     rdfs:domain mus:artistBrand ;
     rdfs:range mus:genre .
 
-mus:bassGuitar rdf:type skos: Concept , mus:instrument;
+mus:bassGuitar rdf:type skos:Concept , mus:instrument;
     skos:prefLabel "Bass";
     skos:definition "Bass Guitar.".
 
-mus:drums rdf:type skos: Concept , mus:instrument;
+mus:drums rdf:type skos:Concept , mus:instrument;
     skos:prefLabel "Drums";
     skos:definition "Drums.".
 
-mus:electricGuitar rdf:type skos: Concept , mus:instrument;
+mus:electricGuitar rdf:type skos:Concept , mus:instrument;
     skos:prefLabel "Electric Guitare";
     skos:definition "Electric Guitar.".
 
@@ -165,7 +166,7 @@ mus:heyday rdf:type owl:DatatypeProperty ;
     rdfs:comment "The peak decade of the artist's career, represented as the starting year of the decade (e.g., 1980 for the 1980s)."@en .
 
 # Generic Membership class
-mus:Membership rdf:type owl:Class ;
+mus:membershipembership rdf:type owl:Class ;
     rdfs:isDefinedBy mus:musicOntology ;
     rdfs:label "Membership"@en ;
     rdfs:comment "A more generic relation representing the participation of an Artist in an ArtistBrand during a specific time period. Used for e.g. the role(s) fulfilled."@en .
@@ -184,21 +185,21 @@ mus:Role rdf:type owl:Class ;
 # a Membership has a Member which is the artist
 mus:hasMember rdf:type owl:ObjectProperty ;
     rdfs:isDefinedBy mus:musicOntology ;
-    rdfs:domain mus:Membership ;
+    rdfs:domain mus:membership ;
     rdfs:range mus:artist ;
     rdfs:label "has member"@en ;
     rdfs:comment "Links a Membership to the Artist (person) who participates."@en .
 
 mus:inBrand rdf:type owl:ObjectProperty ;
     rdfs:isDefinedBy mus:musicOntology ;
-    rdfs:domain mus:Membership ;
+    rdfs:domain mus:membership ;
     rdfs:range mus:artistBrand ;
     rdfs:label "in brand"@en ;
     rdfs:comment "Links a Membership to the ArtistBrand in which the artist participates."@en .
 
 mus:hasRole rdf:type owl:ObjectProperty ;
     rdfs:isDefinedBy mus:musicOntology ;
-    rdfs:domain mus:Membership ;
+    rdfs:domain mus:membership ;
     rdfs:range mus:Role ;
     rdfs:label "has role"@en ;
     rdfs:comment "Links a Membership to the Role the artist fulfils in that brand."@en .
@@ -208,14 +209,14 @@ mus:hasRole rdf:type owl:ObjectProperty ;
 
 mus:startDate rdf:type owl:DatatypeProperty ;
     rdfs:isDefinedBy mus:musicOntology ;
-    rdfs:domain mus:Membership ;
+    rdfs:domain mus:membership ;
     rdfs:range xsd:date ;
     rdfs:label "start date"@en ;
     rdfs:comment "The date on which the membership began."@en .
 
 mus:endDate rdf:type owl:DatatypeProperty ;
     rdfs:isDefinedBy mus:musicOntology ;
-    rdfs:domain mus:Membership ;
+    rdfs:domain mus:membership ;
     rdfs:range xsd:date ;
     rdfs:label "end date"@en ;
     rdfs:comment "The date on which the membership ended. Absent if still active."@en .
@@ -227,7 +228,7 @@ mus:endDate rdf:type owl:DatatypeProperty ;
 
 # Loz -------------------------------------------------------------------------------------
 
-mus:geoLocations rdfs:isDefinedBy mus: rdf:type skos:ConceptScheme ;
+mus:geoLocations rdf:type skos:ConceptScheme ;
     skos:prefLabel "Geographic Location"@en ;
     skos:altLabel "geo location" ;
     skos:definition "In geography, location or place is used to denote a region (point, line, or area) on Earth's surface. The term location generally implies a higher degree of certainty than place, the latter often indicating an entity with an ambiguous boundary, relying more on human or social attributes of place identity and sense of place than on geometry." ;
@@ -260,8 +261,7 @@ mus:united_kingdom rdf:type skos:Concept, mus:place ;
 mus:finland rdf:type skos:Concept, mus:place ;
     skos:inScheme mus:geoLocations ;
     skos:prefLabel "Finland"@en ;
-    skos:definition "Finland,[a] officially the Republic of Finland,[b][c] is a Nordic country in Northern Europe. It borders Sweden to the northwest, Norway to the north, and Russia to the east, with the Gulf of Bothnia to the west and the Gulf of Finland to the south, opposite Estonia. Its capital and largest city is Helsinki. Finland has a population of 5.6 million.[9] The official languages are Finnish and Swedish, the mother tongues of 84.1 percent and 5.1 percent of the population, respectively." ;
-    skos:exact
+    skos:definition "Finland,[a] officially the Republic of Finland,[b][c] is a Nordic country in Northern Europe. It borders Sweden to the northwest, Norway to the north, and Russia to the east, with the Gulf of Bothnia to the west and the Gulf of Finland to the south, opposite Estonia. Its capital and largest city is Helsinki. Finland has a population of 5.6 million.[9] The official languages are Finnish and Swedish, the mother tongues of 84.1 percent and 5.1 percent of the population, respectively." .
 
 mus:united_states rdf:type skos:Concept, mus:place ;
     skos:inScheme mus:geoLocations ;
@@ -291,7 +291,7 @@ mus:london rdf:type skos:Concept, mus:place ;
 # Ayelet -------------------------------------------------------------------------------------
 
 
-genre:musicGenre  rdf: type skos: ConceptScheme ;    
+mus:musicGenre  rdf:type skos:ConceptScheme ;    
     skos:prefLabel "Music Genre";
     skos:altLabel "Music Genres";
     skos:altLabel "Music by Genre";
@@ -301,55 +301,55 @@ genre:musicGenre  rdf: type skos: ConceptScheme ;
 
 #L1:
 
-genre:Classical rdf:type skos: Concept , mus:genre;
-    skos:inScheme Music Genre ;
+mus:Classical rdf:type skos:Concept , mus:genre;
+    skos:inScheme mus:musicGenre ;
     skos:prefLabel "Classical";
     skos:altLabel "Formal Music";
     skos:altLabel "Canonic Music";
     skos:definition "The art music from the middle age to the present.";
     skos:exactMatch wikidata:Q9730;
-    skos:topConceptOf Music Genre.
+    skos:topConceptOf mus:musicGenre.
 
-genre:Popular rdf:type skos: Concept , mus:genre;
-    skos:inScheme Music Genre ;
+mus:Popular rdf:type skos:Concept , mus:genre;
+    skos:inScheme mus:musicGenre ;
     skos:prefLabel "Popular";
     skos:definition "Music with wide-appeal distributed to large audiences through the music industry.";
     skos:exactMatch wikidata:Q37073;
-    skos:topConceptOf Music Genre.
+    skos:topConceptOf mus:musicGenre.
 
 #L2:
-genre:westernClassical rdf:type skos: Concept , mus:genre;
-    skos:inScheme Music Genre ;
+mus:westernClassical rdf:type skos:Concept , mus:genre;
+    skos:inScheme mus:musicGenre ;
     skos:prefLabel "Western Classical";
     skos:altLabel "Western Classical Music Styles";
     skos:definition "The art music of the western world from the middle age to the present.";
     skos:exactMatch wikidata:Q8133273;
-    skos:broader Classical.
+    skos:broader mus:Classical.
 
-genre:Blues rdf:type skos: Concept , mus:genre;
-    skos:inScheme Music Genre ;
+mus:Blues rdf:type skos:Concept , mus:genre;
+    skos:inScheme mus:musicGenre ;
     skos:prefLabel "Blues";
     skos:definition "A type of music incorporated spirituals, work songs, field hollers, shouts, chants, and rhymed simple narrative ballads from the African-American culture";
     skos:exactMatch wikidata:Q9759;
-    skos:broader Popular.
+    skos:broader mus:Popular.
 
 #L3:
-genre:Renaissance rdf:type skos: Concept , mus:genre;
-    skos:inScheme Music Genre ;
+mus:Renaissance rdf:type skos:Concept , mus:genre;
+    skos:inScheme mus:musicGenre ;
     skos:prefLabel "Renaissance";
     skos:altLabel "Renaissance Era Music";
     skos:definition "The art music of the renaissance era.";
-    skos:exactMatch wikidata: Q8133273;
-    skos:broader Western Classical.
+    skos:exactMatch wikidata:Q8133273;
+    skos:broader mus:westernClassical .
 
 
-genre:Baroque rdf:type skos: Concept , mus:genre;
-    skos: nScheme Music Genre ;
+mus:Baroque rdf:type skos:Concept , mus:genre;
+    skos:inScheme mus:musicGenre ;
     skos:prefLabel "Baroque";
     skos:altLabel "Music of the Baroquec";
     skos:definition "The art music of the renaissance era.";
-    skos:exactMatch wikidata: Q8361;
-    skos:broader Western Classical.
+    skos:exactMatch wikidata:Q8361;
+    skos:broader mus:westernClassical .
 
 
 
@@ -467,7 +467,7 @@ mus:JimmiHendrix rdf:type mus:artistBrand ;
     mus:isKnownForSong mus:littleWing ;
     mus:playedIn mus:littleWing ;
     mus:isKnownForAlbum mus:axisBoldAsLove ;
-    mus:plays mus:bassGuitar ;
+    mus:plays mus:bassGuitar .
      #cbox
 
 
@@ -478,7 +478,10 @@ mus:RogerDaltry rdf:type mus:artist ;
 
 mus:RDasTheWhoMembership rdf:type mus:membership ;
     mus:hasMember mus:RogerDaltry ;
-    mus:inBrand mus:TheWho .
+    mus:inBrand mus:TheWho ;
+    mus:hasRole mus:LeadSinger ,            # primary: frontman since day one
+               mus:RockVocalist ,           # genre-specific specialization
+               mus:Songwriter .             # Jagger/Richards partnership
 
 mus:PeteTownsend rdf:type mus:artist ;
     mus:name "Pete Townsend."@en ; # abox, not a uri
@@ -486,7 +489,10 @@ mus:PeteTownsend rdf:type mus:artist ;
 
 mus:PTasTheWhoMembership rdf:type mus:membership ;
     mus:hasMember mus:PeteTownsend ;
-    mus:inBrand mus:TheWho .
+    mus:inBrand mus:TheWho ;
+    mus:hasRole mus:LeadSinger ,            # primary: frontman since day one
+        mus:RockVocalist ,           # genre-specific specialization
+        mus:Songwriter .             # Jagger/Richards partnership
 
 mus:TheWho rdf:type mus:artistBrand ;
     mus:artistConfiguration mus:band ;
@@ -658,7 +664,7 @@ mus:TheRollingStones rdf:type mus:artistBrand ;
     mus:performedAt mus:superbowlXL .
 
 # Membership & Role
-mus:MickAsRollingStone rdf:type mus:Membership ;
+mus:MickAsRollingStone rdf:type mus:membership ;
     mus:hasMember mus:MichaelPhilipJagger ;
     mus:inBrand mus:TheRollingStones ;
     mus:hasRole mus:LeadSinger ,            # primary: frontman since day one
@@ -667,3 +673,174 @@ mus:MickAsRollingStone rdf:type mus:Membership ;
                mus:HarmonicaPlayer ;        # plays harmonica live & on recordings
     mus:startDate "1962-07-12"^^xsd:date .  # first gig at the Marquee Club
     # no mus:endDate — still active
+
+
+
+
+#################################################
+# NEW CLASSES
+#################################################
+
+### Musical Attribute superclass
+mus:MusicalAttribute rdf:type owl:Class ;
+    rdfs:isDefinedBy mus:musicOntology ;
+    rdfs:label "Musical Attribute"@en ;
+    rdfs:comment "Abstract superclass for musical descriptive attributes such as vocal range or instrument family."@en .
+
+#################################################
+# VOCAL RANGE
+#################################################
+
+mus:VocalRange rdf:type owl:Class ;
+    rdfs:subClassOf mus:MusicalAttribute ;
+    rdfs:isDefinedBy mus:musicOntology ;
+    rdfs:label "Vocal Range"@en ;
+    rdfs:comment "Classification of a singer's vocal register."@en .
+
+mus:Countertenor rdf:type owl:Class ;
+    rdfs:subClassOf mus:VocalRange ;
+    rdfs:label "Countertenor"@en .
+
+mus:Tenor rdf:type owl:Class ;
+    rdfs:subClassOf mus:VocalRange ;
+    rdfs:label "Tenor"@en .
+
+mus:Baritone rdf:type owl:Class ;
+    rdfs:subClassOf mus:VocalRange ;
+    rdfs:label "Baritone"@en .
+
+mus:Soprano rdf:type owl:Class ;
+    rdfs:subClassOf mus:VocalRange ;
+    rdfs:label "Soprano"@en .
+
+
+#################################################
+# INSTRUMENT FAMILY
+#################################################
+
+mus:InstrumentFamily rdf:type owl:Class ;
+    rdfs:subClassOf mus:MusicalAttribute ;
+    rdfs:isDefinedBy mus:musicOntology ;
+    rdfs:label "Instrument Family"@en ;
+    rdfs:comment "A family grouping of musical instruments."@en .
+
+mus:StringFamily rdf:type owl:Class ;
+    rdfs:subClassOf mus:InstrumentFamily ;
+    rdfs:label "String Instruments"@en .
+
+mus:PercussionFamily rdf:type owl:Class ;
+    rdfs:subClassOf mus:InstrumentFamily ;
+    rdfs:label "Percussion Instruments"@en .
+
+mus:WoodwindFamily rdf:type owl:Class ;
+    rdfs:subClassOf mus:InstrumentFamily ;
+    rdfs:label "Woodwind Instruments"@en .
+
+mus:BrassFamily rdf:type owl:Class ;
+    rdfs:subClassOf mus:InstrumentFamily ;
+    rdfs:label "Brass Instruments"@en .
+
+mus:ElectronicFamily rdf:type owl:Class ;
+    rdfs:subClassOf mus:InstrumentFamily ;
+    rdfs:label "Electronic Instruments"@en .
+
+
+#################################################
+# EVENT SPECIALIZATION
+#################################################
+
+mus:PerformanceEvent rdf:type owl:Class ;
+    rdfs:subClassOf mus:event ;
+    rdfs:isDefinedBy mus:musicOntology ;
+    rdfs:label "Performance Event"@en ;
+    rdfs:comment "An event where musicians perform live or broadcast performances."@en .
+
+mus:Concert rdf:type owl:Class ;
+    rdfs:subClassOf mus:PerformanceEvent ;
+    rdfs:label "Concert"@en .
+
+mus:TVPerformance rdf:type owl:Class ;
+    rdfs:subClassOf mus:PerformanceEvent ;
+    rdfs:label "Television Performance"@en .
+
+
+#################################################
+# ARTIST BRAND SPECIALIZATION
+#################################################
+
+mus:CollaborationProject rdf:type owl:Class ;
+    rdfs:subClassOf mus:artistBrand ;
+    rdfs:isDefinedBy mus:musicOntology ;
+    rdfs:label "Collaboration Project"@en ;
+    rdfs:comment "A temporary collaboration between artists under a shared name."@en .
+
+
+#################################################
+# NEW PROPERTIES
+#################################################
+
+mus:hasVocalRange rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy mus:musicOntology ;
+    rdfs:domain mus:artist ;
+    rdfs:range mus:VocalRange ;
+    rdfs:label "has vocal range"@en ;
+    rdfs:comment "Links an artist to their vocal range classification."@en .
+
+
+mus:playsInstrumentFamily rdf:type owl:ObjectProperty ;
+    rdfs:isDefinedBy mus:musicOntology ;
+    rdfs:domain mus:artist ;
+    rdfs:range mus:InstrumentFamily ;
+    rdfs:label "plays instrument family"@en ;
+    rdfs:comment "Links an artist to the family of instruments they perform with."@en .
+
+
+#################################################
+# STYLE DIMENSION
+#################################################
+
+mus:MusicalStyle rdf:type owl:Class ;
+    rdfs:isDefinedBy mus:musicOntology ;
+    rdfs:label "Musical Style"@en .
+
+mus:hasMusicalStyle rdf:type owl:ObjectProperty ;
+    rdfs:domain mus:artistBrand ;
+    rdfs:range mus:MusicalStyle .
+
+
+#################################################
+# CULTURAL SCENE
+#################################################
+
+mus:CulturalScene rdf:type owl:Class ;
+    rdfs:subClassOf mus:place ;
+    rdfs:label "Cultural Scene"@en .
+
+mus:associatedScene rdf:type owl:ObjectProperty ;
+    rdfs:domain mus:artistBrand ;
+    rdfs:range mus:CulturalScene .
+
+
+#################################################
+# MEDIA COMPOSITION
+#################################################
+
+mus:MediaComposition rdf:type owl:Class ;
+    rdfs:subClassOf mus:album ;
+    rdfs:label "Media Composition"@en .
+
+mus:FilmSoundtrack rdfs:subClassOf mus:MediaComposition .
+mus:GameSoundtrack rdfs:subClassOf mus:MediaComposition .
+
+mus:composedForMedia rdf:type owl:ObjectProperty ;
+    rdfs:domain mus:artist ;
+    rdfs:range mus:MediaComposition .
+
+
+#################################################
+# COLLABORATION GRAPH
+#################################################
+
+mus:collaboratedWith rdf:type owl:ObjectProperty ;
+    rdfs:domain mus:artist ;
+    rdfs:range mus:artist .
